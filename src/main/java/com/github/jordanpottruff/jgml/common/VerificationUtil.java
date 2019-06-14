@@ -12,7 +12,7 @@ public class VerificationUtil {
      * @param vecA first vector operand.
      * @param vecB second vector operand.
      */
-    public static void verifyEqualDimensions(float[] vecA, float[] vecB) {
+    public static void verifyEqualDimensions(double[] vecA, double[] vecB) {
         if (vecA.length != vecB.length) throw ExceptionsUtil.unequalVectorDimensions(vecA, vecB);
     }
 
@@ -22,7 +22,7 @@ public class VerificationUtil {
      * @param matA first matrix operand.
      * @param matB second matrix operand.
      */
-    public static void verifyEqualDimensions(float[][] matA, float[][] matB) {
+    public static void verifyEqualDimensions(double[][] matA, double[][] matB) {
         verifyUniformMatrix(matA);
         verifyUniformMatrix(matB);
         if (matA.length != matB.length || matA[0].length != matB[0].length) {
@@ -38,7 +38,7 @@ public class VerificationUtil {
      * @param mat first operand, a matrix.
      * @param vec second operand, a vector.
      */
-    public static void verifyOperableDimensions(float[][] mat, float[] vec) {
+    public static void verifyOperableDimensions(double[][] mat, double[] vec) {
         verifyUniformMatrix(mat);
 
         int matCols = mat.length;
@@ -58,7 +58,7 @@ public class VerificationUtil {
      * @param matA first matrix operand.
      * @param matB second matrix operand.
      */
-    public static void verifyOperableDimensions(float[][] matA, float[][] matB) {
+    public static void verifyOperableDimensions(double[][] matA, double[][] matB) {
         verifyUniformMatrix(matA);
         verifyUniformMatrix(matB);
 
@@ -81,7 +81,7 @@ public class VerificationUtil {
      *
      * @param mat the matrix to be verified.
      */
-    public static void verifyUniformMatrix(float[][] mat) {
+    public static void verifyUniformMatrix(double[][] mat) {
         if (mat.length == 0) return;
         int colLength = mat[0].length;
         for (int i = 1; i < mat.length; i++) {
@@ -95,7 +95,7 @@ public class VerificationUtil {
      * square.
      * @param mat the matrix to be verified.
      */
-    public static void verifySquareMatrix(float[][] mat) {
+    public static void verifySquareMatrix(double[][] mat) {
         verifyUniformMatrix(mat);
         if (mat.length == 0) return;
         if (mat.length != mat[0].length) throw ExceptionsUtil.expectedSquareMatrix(mat);
@@ -108,9 +108,9 @@ public class VerificationUtil {
      * @param vec the vector to be accessed.
      * @param row the row portion of the coordinate to be verified.
      */
-    public static void verifyValidCoord(float[] vec, int row) {
+    public static void verifyValidCoord(double[] vec, int row) {
         try {
-            float num = vec[row];
+            double num = vec[row];
         } catch (IndexOutOfBoundsException e) {
             throw ExceptionsUtil.invalidVectorCoordinate(row, vec);
         }
@@ -124,10 +124,10 @@ public class VerificationUtil {
      * @param row the row portion of the coordinate to be verified.
      * @param col the col portion of the coordinate to be verified.
      */
-    public static void verifyValidCoord(float[][] mat, int row, int col) {
+    public static void verifyValidCoord(double[][] mat, int row, int col) {
         // Verification can just be done by translating an index out of bound exception to our exception.
         try {
-            float num = mat[col][row];
+            double num = mat[col][row];
         } catch (IndexOutOfBoundsException e) {
             throw ExceptionsUtil.invalidMatrixCoordinates(row, col, mat);
         }
@@ -139,9 +139,9 @@ public class VerificationUtil {
      * @param mat the matrix to be accessed.
      * @param col the column to be verified.
      */
-    public static void verifyValidColumn(float[][] mat, int col) {
+    public static void verifyValidColumn(double[][] mat, int col) {
         try {
-            float[] column = mat[col];
+            double[] column = mat[col];
         } catch (IndexOutOfBoundsException e) {
             throw ExceptionsUtil.invalidMatrixColumn(col, mat);
         }
@@ -153,7 +153,7 @@ public class VerificationUtil {
      * @param vec the vector to be verified.
      * @param rows the number of rows the vector must have.
      */
-    public static void verifyExactDimension(float[] vec, int rows) {
+    public static void verifyExactDimension(double[] vec, int rows) {
         if(vec.length != rows) {
             throw ExceptionsUtil.invalidDimensions(vec, rows);
         }
@@ -166,7 +166,7 @@ public class VerificationUtil {
      * @param rows the number of rows the matrix must have.
      * @param cols the number of columns the matrix must have.
      */
-    public static void verifyExactDimension(float[][] mat, int rows, int cols) {
+    public static void verifyExactDimension(double[][] mat, int rows, int cols) {
         // Verify the matrix is uniform (all columns are the same length)
         try {
             verifyUniformMatrix(mat);
@@ -189,7 +189,7 @@ public class VerificationUtil {
      *
      * @param mat the matrix to be inverted.
      */
-    public static void verifyInvertibleMatrix(float[][] mat) {
+    public static void verifyInvertibleMatrix(double[][] mat) {
         if(OperationsUtil.determinant(mat) == 0.0f) {
             throw ExceptionsUtil.notInvertible(mat);
         }

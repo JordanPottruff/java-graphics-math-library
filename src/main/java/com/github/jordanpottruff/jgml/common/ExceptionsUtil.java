@@ -14,7 +14,7 @@ public class ExceptionsUtil {
      * @param vecB second vector.
      * @return the exception/
      */
-    public static IllegalArgumentException unequalVectorDimensions(float[] vecA, float[] vecB) {
+    public static IllegalArgumentException unequalVectorDimensions(double[] vecA, double[] vecB) {
         return new IllegalArgumentException(String.format("Expected vectors with identical dimensions but received:\n%sand:\n%s", OperationsUtil.stringify(vecA, 2), OperationsUtil.stringify(vecB, 2)));
     }
 
@@ -25,7 +25,7 @@ public class ExceptionsUtil {
      * @param matB second matrix.
      * @return the exception.
      */
-    public static IllegalArgumentException unequalMatrixDimensions(float[][] matA, float[][] matB) {
+    public static IllegalArgumentException unequalMatrixDimensions(double[][] matA, double[][] matB) {
         return new IllegalArgumentException(String.format("Expected matrices with identical dimensions but received:\n%sand:\n%s", OperationsUtil.stringify(matA, 2), OperationsUtil.stringify(matB, 2)));
     }
 
@@ -37,7 +37,7 @@ public class ExceptionsUtil {
      * @param vec the vector.
      * @return the exception.
      */
-    public static IllegalArgumentException inoperableMatrixVectorDimensions(float[][] mat, float[] vec) {
+    public static IllegalArgumentException inoperableMatrixVectorDimensions(double[][] mat, double[] vec) {
         return new IllegalArgumentException(String.format("Expected the number of columns in a matrix to equal the number of rows in the vector but received:\n%sand:\n%s", OperationsUtil.stringify(mat, 2), OperationsUtil.stringify(vec, 2)));
     }
 
@@ -49,7 +49,7 @@ public class ExceptionsUtil {
      * @param matB second matrix.
      * @return the exception.
      */
-    public static IllegalArgumentException inoperableMatrixDimensions(float[][] matA, float[][] matB) {
+    public static IllegalArgumentException inoperableMatrixDimensions(double[][] matA, double[][] matB) {
         return new IllegalArgumentException(String.format("Expected matrices with dimensions compatible for operations but received:\n%sand:\n%s", OperationsUtil.stringify(matA, 2), OperationsUtil.stringify(matB, 2)));
     }
 
@@ -59,7 +59,7 @@ public class ExceptionsUtil {
      * @param mat the non-square matrix.
      * @return the exception.
      */
-    public static IllegalArgumentException expectedSquareMatrix(float[][] mat) {
+    public static IllegalArgumentException expectedSquareMatrix(double[][] mat) {
         return new IllegalArgumentException(String.format("Expected a square matrix but received matrix:\n%s", OperationsUtil.stringify(mat, 2)));
     }
 
@@ -69,7 +69,7 @@ public class ExceptionsUtil {
      * @param mat the non-uniform matrix.
      * @return the exception.
      */
-    public static IllegalArgumentException expectedUniformMatrix(float[][] mat) {
+    public static IllegalArgumentException expectedUniformMatrix(double[][] mat) {
         return new IllegalArgumentException(String.format("Expected a matrix with columns of equal length but received:\n%s", mat));
     }
 
@@ -81,7 +81,7 @@ public class ExceptionsUtil {
      * @param mat the matrix being accessed.
      * @return the exception.
      */
-    public static IllegalArgumentException invalidMatrixCoordinates(int row, int col, float[][] mat) {
+    public static IllegalArgumentException invalidMatrixCoordinates(int row, int col, double[][] mat) {
         return new IllegalArgumentException(String.format("Position at row=%d, col=%d is out of bounds of the matrix:\n%s", row, col, OperationsUtil.stringify(mat, 2)));
     }
 
@@ -92,7 +92,7 @@ public class ExceptionsUtil {
      * @param mat the matrix being accessed.
      * @return the exception.
      */
-    public static IllegalArgumentException invalidMatrixColumn(int col, float[][] mat) {
+    public static IllegalArgumentException invalidMatrixColumn(int col, double[][] mat) {
         return new IllegalArgumentException(String.format("Column at position %d does not exist in the matrix:\n%s", col, OperationsUtil.stringify(mat, 2)));
     }
 
@@ -103,7 +103,7 @@ public class ExceptionsUtil {
      * @param vec the vector being accessed.
      * @return the exception.
      */
-    public static IllegalArgumentException invalidVectorCoordinate(int row, float[] vec) {
+    public static IllegalArgumentException invalidVectorCoordinate(int row, double[] vec) {
         return new IllegalArgumentException(String.format("Position at row=%d is out of bounds of the vector:\n%s", row, vec));
     }
 
@@ -113,7 +113,7 @@ public class ExceptionsUtil {
      * @param mat the matrix that is non-invertible.
      * @return the exception.
      */
-    public static IllegalArgumentException notInvertible(float[][] mat) {
+    public static IllegalArgumentException notInvertible(double[][] mat) {
         return new IllegalArgumentException(String.format("Expected an invertible matrix but received:\n%s", OperationsUtil.stringify(mat, 2)));
     }
 
@@ -124,7 +124,7 @@ public class ExceptionsUtil {
      * @param rows the expected number of rows.
      * @return the exception.
      */
-    public static IllegalArgumentException invalidDimensions(float[] vec, int rows) {
+    public static IllegalArgumentException invalidDimensions(double[] vec, int rows) {
         return new IllegalArgumentException(String.format("Expected a vector with %d rows, but received: \n%s", rows, vec));
     }
 
@@ -136,7 +136,7 @@ public class ExceptionsUtil {
      * @param cols the expected number of columns.
      * @return the exception.
      */
-    public static IllegalArgumentException invalidDimensions(float[][] mat, int rows, int cols) {
+    public static IllegalArgumentException invalidDimensions(double[][] mat, int rows, int cols) {
         return new IllegalArgumentException(String.format("Expected a uniform matrix with %d rows and %d cols, but received:\n%s", rows, cols, OperationsUtil.stringify(mat, 2)));
     }
 }

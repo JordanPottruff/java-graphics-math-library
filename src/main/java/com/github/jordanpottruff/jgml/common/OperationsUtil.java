@@ -12,25 +12,25 @@ public class OperationsUtil {
      * Returns the magnitude of the input vector.
      *
      * @param vec operand.
-     * @return the magnitude of the operand as a floating point value.
+     * @return the magnitude of the operand as a doubleing point value.
      */
-    public static float magnitude(float[] vec) {
-        float sum = 0;
+    public static double magnitude(double[] vec) {
+        double sum = 0;
         for (int i = 0; i < vec.length; i++) {
             sum += Math.pow(vec[i], 2.0f);
         }
-        return (float) Math.sqrt(sum);
+        return (double) Math.sqrt(sum);
     }
 
     /**
      * Returns the normalized version of the input vector as a new vector.
      *
      * @param vec operand.
-     * @return the normalization of the operand represented by a floating point array.
+     * @return the normalization of the operand represented by a doubleing point array.
      */
-    public static float[] normalize(float[] vec) {
-        float[] newVec = new float[vec.length];
-        float mag = magnitude(vec);
+    public static double[] normalize(double[] vec) {
+        double[] newVec = new double[vec.length];
+        double mag = magnitude(vec);
         for (int i = 0; i < vec.length; i++) {
             newVec[i] = vec[i] / mag;
         }
@@ -41,10 +41,10 @@ public class OperationsUtil {
      * Returns a new vector such that the components of the vector are the negation of the input vector's components.
      *
      * @param vec operand.
-     * @return the inverse vector of the operand represented by a floating point array.
+     * @return the inverse vector of the operand represented by a doubleing point array.
      */
-    public static float[] invert(float[] vec) {
-        float[] newVec = new float[vec.length];
+    public static double[] invert(double[] vec) {
+        double[] newVec = new double[vec.length];
         for (int i = 0; i < vec.length; i++) {
             newVec[i] = -vec[i];
         }
@@ -58,10 +58,10 @@ public class OperationsUtil {
      * @param vecB second operand.
      * @return the sum of the operands.
      */
-    public static float[] add(float[] vecA, float[] vecB) {
+    public static double[] add(double[] vecA, double[] vecB) {
         VerificationUtil.verifyEqualDimensions(vecA, vecB);
         int n = vecA.length;
-        float[] sum = new float[n];
+        double[] sum = new double[n];
         for (int i = 0; i < n; i++) {
             sum[i] = vecA[i] + vecB[i];
         }
@@ -75,7 +75,7 @@ public class OperationsUtil {
      * @param vecB operand to subtract.
      * @return the difference between vecA and vecB.
      */
-    public static float[] subtract(float[] vecA, float[] vecB) {
+    public static double[] subtract(double[] vecA, double[] vecB) {
         // Use add() for op and for compatibility checking.
         return add(vecA, invert(vecB));
     }
@@ -87,10 +87,10 @@ public class OperationsUtil {
      * @param vecB second operand.
      * @return
      */
-    public static float multiply(float[] vecA, float[] vecB) {
+    public static double multiply(double[] vecA, double[] vecB) {
         VerificationUtil.verifyEqualDimensions(vecA, vecB);
         int n = vecA.length;
-        float dot = 0;
+        double dot = 0;
         for (int i = 0; i < n; i++) {
             dot += vecA[i] * vecB[i];
         }
@@ -102,13 +102,13 @@ public class OperationsUtil {
      * Returns a new matrix such that the components of the matrix are the negation of the input matrix's components.
      *
      * @param mat matrix operand.
-     * @return the inverse matrix of the operand represented by a 2D floating point array.
+     * @return the inverse matrix of the operand represented by a 2D doubleing point array.
      */
-    public static float[][] invert(float[][] mat) {
-        float[][] result = new float[mat.length][];
+    public static double[][] invert(double[][] mat) {
+        double[][] result = new double[mat.length][];
 
         for(int col=0; col<mat.length; col++) {
-            float[] invRow = new float[mat[col].length];
+            double[] invRow = new double[mat[col].length];
 
             for(int row=0; row<invRow.length; row++) {
                 invRow[row] = -mat[col][row];
@@ -127,12 +127,12 @@ public class OperationsUtil {
      * @param matB second operand.
      * @return the sum of the operands.
      */
-    public static float[][] add(float[][] matA, float[][] matB) {
+    public static double[][] add(double[][] matA, double[][] matB) {
         VerificationUtil.verifyEqualDimensions(matA, matB);
         int rows = matA[0].length;
         int cols = matA.length;
 
-        float[][] result = new float[cols][rows];
+        double[][] result = new double[cols][rows];
 
         for(int ci=0; ci<cols; ci++) {
             for(int ri=0; ri<rows; ri++) {
@@ -150,7 +150,7 @@ public class OperationsUtil {
      * @param matB operand to subtract.
      * @return the difference between matA and matB.
      */
-    public static float[][] subtract(float[][] matA, float[][] matB) {
+    public static double[][] subtract(double[][] matA, double[][] matB) {
         VerificationUtil.verifyEqualDimensions(matA, matB);
         return add(matA, invert(matB));
     }
@@ -162,12 +162,12 @@ public class OperationsUtil {
      * @param scalar the scalar operand.
      * @return the scaled matrix.
      */
-    public static float[][] scale(float[][] mat, float scalar) {
+    public static double[][] scale(double[][] mat, double scalar) {
         VerificationUtil.verifyUniformMatrix(mat);
         int rows = mat[0].length;
         int cols = mat.length;
 
-        float[][] result = new float[cols][rows];
+        double[][] result = new double[cols][rows];
 
         for(int ci=0; ci<cols; ci++) {
             for(int ri=0; ri<rows; ri++) {
@@ -186,12 +186,12 @@ public class OperationsUtil {
      * @param vec the vector operand.
      * @return the product of the matrix and vector operands.
      */
-    public static float[] multiply(float[][] mat, float[] vec) {
+    public static double[] multiply(double[][] mat, double[] vec) {
         VerificationUtil.verifyOperableDimensions(mat, vec);
         int matCols = mat.length;
         int matRows = mat[0].length;
 
-        float[] result = new float[matRows];
+        double[] result = new double[matRows];
 
         for(int row=0; row<matRows; row++) {
             for(int col=0; col<matCols; col++) {
@@ -210,14 +210,14 @@ public class OperationsUtil {
      * @param matB the second matrix operand.
      * @return the product of the two input matrices.
      */
-    public static float[][] multiply(float[][] matA, float[][] matB) {
+    public static double[][] multiply(double[][] matA, double[][] matB) {
         VerificationUtil.verifyOperableDimensions(matA, matB);
         int matACols = matA.length;
         int matARows = matA[0].length;
         int matBCols = matB.length;
         int matBRows = matB[0].length;
 
-        float[][] result = new float[matARows][matBCols];
+        double[][] result = new double[matARows][matBCols];
 
         for(int row=0; row<matARows; row++) {
             for(int col=0; col<matBCols; col++) {
@@ -238,10 +238,10 @@ public class OperationsUtil {
      * @param col index of column to be removed.
      * @return the operand matrix with the given row and column removed.
      */
-    public static float[][] submatrix(float[][] mat, int row, int col) {
+    public static double[][] submatrix(double[][] mat, int row, int col) {
         VerificationUtil.verifyUniformMatrix(mat);
         VerificationUtil.verifyValidCoord(mat, row, col);
-        float[][] sub = new float[mat.length-1][mat[0].length-1];
+        double[][] sub = new double[mat.length-1][mat[0].length-1];
 
         int cSub = 0;
         for(int ci=0; ci<mat.length; ci++) {
@@ -267,11 +267,11 @@ public class OperationsUtil {
      * @param col column to be removed to compute minor.
      * @return the minor of the operand matrix.
      */
-    public static float minor(float[][] mat, int row, int col) {
+    public static double minor(double[][] mat, int row, int col) {
         VerificationUtil.verifySquareMatrix(mat);
         VerificationUtil.verifyValidCoord(mat, row, col);
 
-        float[][] sub = submatrix(mat, row, col);
+        double[][] sub = submatrix(mat, row, col);
         return determinant(sub);
     }
 
@@ -284,11 +284,11 @@ public class OperationsUtil {
      * @param col selected column for the cofactor.
      * @return the cofactor of the operand matrix at coordinate (row,col).
      */
-    public static float cofactor(float[][] mat, int row, int col) {
+    public static double cofactor(double[][] mat, int row, int col) {
         VerificationUtil.verifySquareMatrix(mat);
         VerificationUtil.verifyValidCoord(mat, row, col);
 
-        return (float)Math.pow(-1, row+col+2) * minor(mat, row, col);
+        return (double)Math.pow(-1, row+col+2) * minor(mat, row, col);
     }
 
     /**
@@ -297,7 +297,7 @@ public class OperationsUtil {
      * @param mat operand.
      * @return the determinant of the operand matrix.
      */
-    public static float determinant(float[][] mat) {
+    public static double determinant(double[][] mat) {
         VerificationUtil.verifySquareMatrix(mat);
         int dim = mat.length;
         if(dim == 1) {
@@ -305,7 +305,7 @@ public class OperationsUtil {
         } else if(dim == 2) {
             return mat[0][0] * mat[1][1] - mat[1][0] * mat[0][1];
         } else {
-            float det = 0;
+            double det = 0;
             for(int ri=0; ri<dim; ri++) {
                 det += mat[0][ri] * cofactor(mat, ri, 0);
             }
@@ -320,10 +320,10 @@ public class OperationsUtil {
      * @param mat the matrix to inverse.
      * @return the inverse of the matrix.
      */
-    public static float[][] inverse(float[][] mat) {
+    public static double[][] inverse(double[][] mat) {
         VerificationUtil.verifySquareMatrix(mat);
         VerificationUtil.verifyInvertibleMatrix(mat);
-        float[][] result = new float[mat.length][mat[0].length];
+        double[][] result = new double[mat.length][mat[0].length];
 
         for(int col=0; col<mat.length; col++) {
             for(int row=0; row<mat[0].length; row++) {
@@ -336,14 +336,14 @@ public class OperationsUtil {
     }
 
     /**
-     * Converts a float-array vector into a string representation. Each component of the vector is surrounded by
+     * Converts a double-array vector into a string representation. Each component of the vector is surrounded by
      * brackets and put onto a newline.
      *
      * @param vec the vector to be stringified.
      * @param decimals the number of decimals that each component should be formatted to.
      * @return a string representation of the vector.
      */
-    public static String stringify(float[] vec, int decimals) {
+    public static String stringify(double[] vec, int decimals) {
         if(vec.length == 0) {
             return "[]";
         }
@@ -351,26 +351,26 @@ public class OperationsUtil {
 
         // Find the length of the longest string representation of the components of the vector.
         int maxStrLen = Integer.MIN_VALUE;
-        for(float component: vec) {
+        for(double component: vec) {
             maxStrLen = Math.max(maxStrLen, String.format("%."+decimals+"f", component).length());
         }
 
         // Build the result string, justifying each component appropriately given the length of the longest one.
-        for(float component: vec) {
+        for(double component: vec) {
             result += String.format("[%"+maxStrLen+"."+decimals+"f]\n", component);
         }
         return result;
     }
 
     /**
-     * Converts a 2D float-array matrix into a string representation. Each column vector's component is surrounded by
+     * Converts a 2D double-array matrix into a string representation. Each column vector's component is surrounded by
      * brackets and put on a new line.
      *
      * @param mat the matrix to be stringified.
      * @param decimals the number of decimals that each component should be formatted to.
      * @return a string representation of the matrix.
      */
-    public static String stringify(float[][] mat, int decimals) {
+    public static String stringify(double[][] mat, int decimals) {
         if(mat.length == 0) {
             return "[]";
         }
