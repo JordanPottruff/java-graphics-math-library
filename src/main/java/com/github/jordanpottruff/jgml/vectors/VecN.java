@@ -22,7 +22,7 @@ public class VecN implements Vec {
      */
     public VecN(double[] array) {
         VerificationUtil.verifyMinimumLength(array, 2);
-        this.vector = array;
+        this.vector = array.clone();
     }
 
     /**
