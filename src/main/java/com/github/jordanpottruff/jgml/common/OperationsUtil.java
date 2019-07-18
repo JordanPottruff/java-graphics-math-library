@@ -85,7 +85,7 @@ public class OperationsUtil {
      *
      * @param vecA first operand.
      * @param vecB second operand.
-     * @return
+     * @return the dot product of vecA and vecB.
      */
     public static double multiply(double[] vecA, double[] vecB) {
         VerificationUtil.verifyEqualDimensions(vecA, vecB);
@@ -95,6 +95,25 @@ public class OperationsUtil {
             dot += vecA[i] * vecB[i];
         }
         return dot;
+    }
+
+    /**
+     * Returns the cross product of the two input vectors.
+     *
+     * @param vecA first operand.
+     * @param vecB second operand.
+     * @return the cross product of VecA and VecB, an array of length 3.
+     */
+    public static double[] cross(double[] vecA, double[] vecB) {
+        VerificationUtil.verifyMinimumLength(vecA, 3);
+        VerificationUtil.verifyMinimumLength(vecB, 3);
+
+        double[] crossProduct = new double[3];
+        crossProduct[0] = vecA[1]*vecB[2] - vecA[2]*vecB[1];
+        crossProduct[1] = vecA[2]*vecB[0] - vecA[0]*vecB[2];
+        crossProduct[2] = vecA[0]*vecB[1] - vecA[1]*vecB[0];
+
+        return crossProduct;
     }
 
 

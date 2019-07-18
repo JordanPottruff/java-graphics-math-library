@@ -7,7 +7,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws a DimensionMismatchException at runtime if the two vectors are of different dimensions.
+     * Throws a IllegalArgumentException at runtime if the two vectors are of different dimensions.
      *
      * @param vecA first vector operand.
      * @param vecB second vector operand.
@@ -17,7 +17,15 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws a DimensionMismatchException at runtime if the two matrices are of different dimensions.
+     * Throws an IllegalArgumentException at runtime if the vector is not longer than the minimum
+     * required length.
+     */
+    public static void verifyMinimumLength(double[] vec, int minLength) {
+        if(vec.length < minLength) throw ExceptionsUtil.belowMinimumVectorDimension(vec, minLength);
+    }
+
+    /**
+     * Throws a IllegalArgumentException at runtime if the two matrices are of different dimensions.
      *
      * @param matA first matrix operand.
      * @param matB second matrix operand.
@@ -31,7 +39,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws a DimensionMismatchException at runtime if the matrix and vector are of dimensions that are not compatible
+     * Throws a IllegalArgumentException at runtime if the matrix and vector are of dimensions that are not compatible
      * for an operation like multiplication, where the number of columns in the matrix must equal the number of rows in
      * the vector.
      *
@@ -51,7 +59,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws a DimensionMismatchException at runtime if the two matrices are of dimensions that are not compatible for
+     * Throws a IllegalArgumentException at runtime if the two matrices are of dimensions that are not compatible for
      * an operation like matrix multiplication, where the number of columns in the first operand must equal the
      * number of rows in the second operand.
      *
@@ -71,7 +79,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws a IrregularDimensionException at runtime if the matrix has column vectors with different lengths. The
+     * Throws a IllegalArgumentException at runtime if the matrix has column vectors with different lengths. The
      * expected length is set as the length of the first (left-most) column vector, and the first column vector that
      * differs in length triggers the exception.
      *
@@ -90,7 +98,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws a IrregularDimensionException at runtime if the matrix is not square, i.e. the number of rows differs
+     * Throws a IllegalArgumentException at runtime if the matrix is not square, i.e. the number of rows differs
      * from the number of columns. Also verifies that the matrix is uniform, which is a precondition for it to be
      * square.
      * @param mat the matrix to be verified.
@@ -102,7 +110,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws an InvalidCoordinatesException at runtime if the given row coordinate is out of bounds of the
+     * Throws an IllegalArgumentException at runtime if the given row coordinate is out of bounds of the
      * vector.
      *
      * @param vec the vector to be accessed.
@@ -117,7 +125,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws an InvalidCoordinatesException at runtime if the given (row, col) coordinate is out of bounds of the
+     * Throws an IllegalArgumentException at runtime if the given (row, col) coordinate is out of bounds of the
      * matrix.
      *
      * @param mat the matrix to be accessed.
@@ -134,7 +142,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws an InvalidCoordinatesException at runtime if the given column is out of bounds of the matrix.
+     * Throws an IllegalArgumentException at runtime if the given column is out of bounds of the matrix.
      *
      * @param mat the matrix to be accessed.
      * @param col the column to be verified.
@@ -148,7 +156,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws an InvalidInputException at runtime if the vector is not of the required dimension.
+     * Throws an IllegalArgumentException at runtime if the vector is not of the required dimension.
      *
      * @param vec the vector to be verified.
      * @param rows the number of rows the vector must have.
@@ -160,7 +168,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws an InvalidInputException at runtime if the matrix is not of the required dimension.
+     * Throws an IllegalArgumentException at runtime if the matrix is not of the required dimension.
      *
      * @param mat the matrix to be verified.
      * @param rows the number of rows the matrix must have.
@@ -181,7 +189,7 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws an InvalidInputException at runtime if 
+     * Throws an IllegalArgumentException at runtime if
      */
 
     /**
