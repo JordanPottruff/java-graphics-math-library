@@ -117,7 +117,7 @@ public class Vec4 extends VecN implements CrossProductVec {
      */
     @Override
     public Vec4 subtract(Vec vec) {
-        return new Vec4(super.add(vec).toArray());
+        return new Vec4(super.subtract(vec).toArray());
     }
 
     /**

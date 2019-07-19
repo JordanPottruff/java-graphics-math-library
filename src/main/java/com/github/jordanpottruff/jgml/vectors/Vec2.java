@@ -85,7 +85,7 @@ public class Vec2 extends VecN {
      */
     @Override
     public Vec2 subtract(Vec vec) {
-        return new Vec2(super.add(vec).toArray());
+        return new Vec2(super.subtract(vec).toArray());
     }
 
 }
