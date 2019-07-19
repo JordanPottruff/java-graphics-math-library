@@ -6,6 +6,14 @@ package com.github.jordanpottruff.jgml.vectors;
 public interface Vec {
 
     /**
+     * Returns the element at the specified 0-based index.
+     *
+     * @param i the index of the element.
+     * @return the element at the given index.
+     */
+    double get(int i);
+
+    /**
      * Calculates the magnitude of the vector.
      *
      * @return the magnitude.
