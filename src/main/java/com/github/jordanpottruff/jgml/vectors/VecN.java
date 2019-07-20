@@ -21,7 +21,7 @@ public class VecN implements Vec {
      * @param array an array of elements.
      */
     public VecN(double[] array) {
-        VerificationUtil.verifyMinimumLength(array, 2);
+        VerificationUtil.verifyMinimumDimension(array, 2);
         this.vector = array.clone();
     }
 
