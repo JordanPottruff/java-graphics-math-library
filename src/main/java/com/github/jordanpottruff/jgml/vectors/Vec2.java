@@ -1,7 +1,5 @@
 package com.github.jordanpottruff.jgml.vectors;
 
-import com.github.jordanpottruff.jgml.common.VerificationUtil;
-
 /**
  * A vector of dimension 2.
  */
@@ -15,7 +13,7 @@ public class Vec2 extends VecN {
      */
     public Vec2(double[] array) {
         super(array);
-        VerificationUtil.verifyExactDimension(array, 2);
+        VecUtil.verifyExactDimension(array, 2);
     }
 
     /**

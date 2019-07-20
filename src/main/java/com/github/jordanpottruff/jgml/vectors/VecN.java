@@ -1,8 +1,5 @@
 package com.github.jordanpottruff.jgml.vectors;
 
-import com.github.jordanpottruff.jgml.common.OperationsUtil;
-import com.github.jordanpottruff.jgml.common.VerificationUtil;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -21,7 +18,7 @@ public class VecN implements Vec {
      * @param array an array of elements.
      */
     public VecN(double[] array) {
-        VerificationUtil.verifyMinimumDimension(array, 2);
+        VecUtil.verifyMinimumDimension(array, 2);
         this.vector = array.clone();
     }
 
@@ -52,7 +49,7 @@ public class VecN implements Vec {
      * @return the element at the given index.
      */
     public double get(int i) {
-        VerificationUtil.verifyValidCoord(vector, i);
+        VecUtil.verifyValidCoord(vector, i);
         return vector[i];
     }
 
@@ -71,7 +68,7 @@ public class VecN implements Vec {
      * @return the magnitude.
      */
     public double magnitude() {
-        return OperationsUtil.magnitude(vector);
+        return VecUtil.magnitude(vector);
     }
 
     /**
@@ -80,7 +77,7 @@ public class VecN implements Vec {
      * @return the normalized form.
      */
     public VecN normalize() {
-        return new VecN(OperationsUtil.normalize(vector));
+        return new VecN(VecUtil.normalize(vector));
     }
 
     /**
@@ -89,7 +86,7 @@ public class VecN implements Vec {
      * @return the inverted vector.
      */
     public VecN invert() {
-        return new VecN(OperationsUtil.invert(vector));
+        return new VecN(VecUtil.invert(vector));
     }
 
     /**
@@ -99,7 +96,7 @@ public class VecN implements Vec {
      * @return the sum.
      */
     public VecN add(Vec vec) {
-        return new VecN(OperationsUtil.add(vector, vec.toArray()));
+        return new VecN(VecUtil.add(vector, vec.toArray()));
     }
 
     /**
@@ -109,7 +106,7 @@ public class VecN implements Vec {
      * @return the difference.
      */
     public VecN subtract(Vec vec) {
-        return new VecN(OperationsUtil.subtract(vector, vec.toArray()));
+        return new VecN(VecUtil.subtract(vector, vec.toArray()));
     }
 
     /**
@@ -119,7 +116,7 @@ public class VecN implements Vec {
      * @return the dot product.
      */
     public double dot(Vec vec) {
-        return OperationsUtil.multiply(vector, vec.toArray());
+        return VecUtil.multiply(vector, vec.toArray());
     }
 
     /**

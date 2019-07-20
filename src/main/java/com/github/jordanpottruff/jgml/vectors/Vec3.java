@@ -1,8 +1,5 @@
 package com.github.jordanpottruff.jgml.vectors;
 
-import com.github.jordanpottruff.jgml.common.OperationsUtil;
-import com.github.jordanpottruff.jgml.common.VerificationUtil;
-
 /**
  * A vector of dimension 3.
  */
@@ -16,7 +13,7 @@ public class Vec3 extends VecN implements CrossProductVec {
      */
     public Vec3(double[] array) {
         super(array);
-        VerificationUtil.verifyExactDimension(array, 3);
+        VecUtil.verifyExactDimension(array, 3);
     }
 
     /**
@@ -118,7 +115,7 @@ public class Vec3 extends VecN implements CrossProductVec {
      */
     @Override
     public Vec3 cross(CrossProductVec vec) {
-        return new Vec3(OperationsUtil.cross(toArray(), vec.toArray()));
+        return new Vec3(VecUtil.cross(toArray(), vec.toArray()));
     }
 
 }
