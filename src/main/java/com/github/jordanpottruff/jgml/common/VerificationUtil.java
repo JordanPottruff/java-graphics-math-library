@@ -17,14 +17,6 @@ public class VerificationUtil {
     }
 
     /**
-     * Throws an IllegalArgumentException at runtime if the vector is not longer than the minimum
-     * required length.
-     */
-    public static void verifyMinimumLength(double[] vec, int minLength) {
-        if(vec.length < minLength) throw ExceptionsUtil.belowMinimumVectorDimension(vec, minLength);
-    }
-
-    /**
      * Throws a IllegalArgumentException at runtime if the two matrices are of different dimensions.
      *
      * @param matA first matrix operand.
@@ -35,6 +27,34 @@ public class VerificationUtil {
         verifyUniformMatrix(matB);
         if (matA.length != matB.length || matA[0].length != matB[0].length) {
             throw ExceptionsUtil.unequalMatrixDimensions(matA, matB);
+        }
+    }
+
+    /**
+     * Throws an IllegalArgumentException at runtime if the vector is not longer than the minimum
+     * required dimension.
+     *
+     * @param vec the vector.
+     * @param minLength the minimum required dimension.
+     */
+    public static void verifyMinimumDimension(double[] vec, int minLength) {
+        if(vec.length < minLength) {
+            throw ExceptionsUtil.belowMinimumVectorDimension(vec, minLength);
+        }
+    }
+
+    /**
+     * Throws an IllegalArgumentException at runtime if the dimensions of the matrix are not larger
+     * than the minimum required dimensions.
+     *
+     * @param mat the matrix.
+     * @param minM the minimum required number of columns.
+     * @param minN the minimum required number of rows.
+     */
+    public static void verifyMinimumDimensions(double[][] mat, int minM, int minN) {
+        verifyUniformMatrix(mat);
+        if(mat.length < minM || mat[0].length < minN) {
+            throw ExceptionsUtil.belowMinimumMatrixDimensions(mat, minM, minN);
         }
     }
 

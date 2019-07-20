@@ -19,17 +19,6 @@ public class ExceptionsUtil {
     }
 
     /**
-     * Creates an IllegalArgumentException for a vector whose length is less than the minimum required.
-     *
-     * @param vec the vector being evaluated.
-     * @param minLength the minimum length required of the vector.
-     * @return the exception.
-     */
-    public static IllegalArgumentException belowMinimumVectorDimension(double[] vec, int minLength) {
-        return new IllegalArgumentException(String.format("Expected vector %s of length %d to have a length longer than %d", OperationsUtil.stringify(vec, 2), vec.length, minLength));
-    }
-
-    /**
      * Creates a IllegalArgumentException for two matrices that were expected to be of the same dimensions.
      *
      * @param matA first matrix.
@@ -38,6 +27,30 @@ public class ExceptionsUtil {
      */
     public static IllegalArgumentException unequalMatrixDimensions(double[][] matA, double[][] matB) {
         return new IllegalArgumentException(String.format("Expected matrices with identical dimensions but received:\n%sand:\n%s", OperationsUtil.stringify(matA, 2), OperationsUtil.stringify(matB, 2)));
+    }
+
+    /**
+     * Creates an IllegalArgumentException for a vector whose length is less than the minimum required.
+     *
+     * @param vec the vector being evaluated.
+     * @param minLength the minimum length required of the vector.
+     * @return the exception.
+     */
+    public static IllegalArgumentException belowMinimumVectorDimension(double[] vec, int minLength) {
+        return new IllegalArgumentException(String.format("Expected vector %s of dimension %d to have a dimension larger than %d", OperationsUtil.stringify(vec, 2), vec.length, minLength));
+    }
+
+    /**
+     * Creates an IllegalArgumentException for a matrix whose dimensions are smaller than the
+     * minimum dimensions required.
+     *
+     * @param mat the matrix being evaluated.
+     * @param minM the minimum number of columns.
+     * @param minN the minimum number of rows.
+     * @return the exception.
+     */
+    public static IllegalArgumentException belowMinimumMatrixDimensions(double[][] mat, int minM, int minN) {
+        return new IllegalArgumentException(String.format("Expected matrix %s of dimensions %dx%d to have dimensions larger than %dx%d", OperationsUtil.stringify(mat, 2), mat.length, mat[0].length, minM, minN));
     }
 
     /**
