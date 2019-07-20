@@ -105,8 +105,8 @@ public class OperationsUtil {
      * @return the cross product of VecA and VecB, an array of length 3.
      */
     public static double[] cross(double[] vecA, double[] vecB) {
-        VerificationUtil.verifyMinimumLength(vecA, 3);
-        VerificationUtil.verifyMinimumLength(vecB, 3);
+        VerificationUtil.verifyMinimumDimension(vecA, 3);
+        VerificationUtil.verifyMinimumDimension(vecB, 3);
 
         double[] crossProduct = new double[3];
         crossProduct[0] = vecA[1]*vecB[2] - vecA[2]*vecB[1];
