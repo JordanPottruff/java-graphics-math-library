@@ -10,7 +10,7 @@ class MatUtil {
      * Returns a new matrix such that the components of the matrix are the negation of the input
      * matrix's components.
      */
-    public static double[][] invert(double[][] mat) {
+    static double[][] invert(double[][] mat) {
         double[][] result = new double[mat.length][];
 
         for (int col = 0; col < mat.length; col++) {
