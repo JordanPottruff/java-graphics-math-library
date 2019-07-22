@@ -2,6 +2,10 @@ package com.github.jordanpottruff.jgml.vectors;
 
 class VecUtil {
 
+    private VecUtil() {
+        // Intentionally left blank; prevents instantiation.
+    }
+
     /**
      * Returns the magnitude of the input vector.
      */
