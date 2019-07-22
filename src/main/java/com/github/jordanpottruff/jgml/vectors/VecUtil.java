@@ -113,7 +113,7 @@ class VecUtil {
         for (double component : vec) {
             result += String.format("[%" + maxStrLen + "." + decimals + "f]\n", component);
         }
-        return result;
+        return result.substring(0, result.length()-1);
     }
 
     /**

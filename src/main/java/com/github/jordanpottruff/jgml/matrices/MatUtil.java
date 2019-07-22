@@ -142,7 +142,7 @@ class MatUtil {
      * Returns the minor of the matrix given a selected row and column. The minor of a matrix is the
      * determinant of the submatrix formed by removing the given row and column.
      */
-    static double minor(double[][] mat, int row, int col) {
+    private static double minor(double[][] mat, int row, int col) {
         verifySquareMatrix(mat);
         verifyValidCoord(mat, row, col);
 
@@ -154,7 +154,7 @@ class MatUtil {
      * Returns the cofactor of a matrix at (row,col). The cofactor of a matrix at (row,col) is the
      * value of the matrix at (row,col) multiplied by the minor of the matrix at (row,col).
      */
-    static double cofactor(double[][] mat, int row, int col) {
+    private static double cofactor(double[][] mat, int row, int col) {
         verifySquareMatrix(mat);
         verifyValidCoord(mat, row, col);
 
@@ -221,7 +221,7 @@ class MatUtil {
         for (double component : vec) {
             result += String.format("[%" + maxStrLen + "." + decimals + "f]\n", component);
         }
-        return result;
+        return result.substring(0, result.length()-1);
     }
 
     /**
@@ -275,7 +275,7 @@ class MatUtil {
             result += "\n";
         }
 
-        return result;
+        return result.substring(0, result.length()-1);
     }
 
     /**
@@ -293,13 +293,13 @@ class MatUtil {
      * Throws an IllegalArgumentException at runtime if the dimensions of the matrix are not at
      * least as large as the minimum required dimensions.
      */
-    static void verifyMinimumDimensions(double[][] mat, int minM, int minN) {
+    static void verifyMinimumDimensions(double[][] mat, int minRows, int minCols) {
         verifyUniformMatrix(mat);
-        if (mat.length < minM || mat[0].length < minN) {
+        if (mat.length < minCols || mat[0].length < minRows) {
             throw new IllegalArgumentException(String.format("Expected matrix %s of dimensions " +
                             "%dx%d to have dimensions larger than %dx%d", stringify(mat, 2),
                     mat.length,
-                    mat[0].length, minM, minN));
+                    mat[0].length, minRows, minCols));
         }
     }
 
@@ -313,26 +313,6 @@ class MatUtil {
             throw new IllegalArgumentException(String.format("Expected matrices with identical " +
                     "dimensions but received:\n%sand:\n%s", stringify(matA, 2), stringify(matB,
                     2)));
-        }
-    }
-
-    /**
-     * Throws a IllegalArgumentException at runtime if the two matrices are of dimensions that
-     * are not compatible for an operation like matrix multiplication, where the number of columns
-     * in the first operand must equal the number of rows in the second operand.
-     */
-    static void verifyOperableDimensions(double[][] matA, double[][] matB) {
-        verifyUniformMatrix(matA);
-        verifyUniformMatrix(matB);
-
-        int matACols = matA.length;
-        int matBRows = matB[0].length;
-
-        if (matACols != matBRows) {
-            throw new IllegalArgumentException(String.format("Expected matrices with dimensions " +
-                            "compatible for operations but received:\n%sand:\n%s", stringify(matA
-                    , 2),
-                    stringify(matB, 2)));
         }
     }
 
@@ -354,6 +334,26 @@ class MatUtil {
                     , stringify(mat, 2), stringify(vec, 2)));
         }
 
+    }
+
+    /**
+     * Throws a IllegalArgumentException at runtime if the two matrices are of dimensions that
+     * are not compatible for an operation like matrix multiplication, where the number of columns
+     * in the first operand must equal the number of rows in the second operand.
+     */
+    static void verifyOperableDimensions(double[][] matA, double[][] matB) {
+        verifyUniformMatrix(matA);
+        verifyUniformMatrix(matB);
+
+        int matACols = matA.length;
+        int matBRows = matB[0].length;
+
+        if (matACols != matBRows) {
+            throw new IllegalArgumentException(String.format("Expected matrices with dimensions " +
+                            "compatible for operations but received:\n%sand:\n%s", stringify(matA
+                    , 2),
+                    stringify(matB, 2)));
+        }
     }
 
     /**
