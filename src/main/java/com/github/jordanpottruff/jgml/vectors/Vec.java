@@ -14,6 +14,13 @@ public interface Vec {
     double get(int i);
 
     /**
+     * Returns the dimension/length of the vector.
+     *
+     * @return the dimension.
+     */
+    int size();
+
+    /**
      * Calculates the magnitude of the vector.
      *
      * @return the magnitude.

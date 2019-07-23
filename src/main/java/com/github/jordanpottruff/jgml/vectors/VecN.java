@@ -43,10 +43,7 @@ public class VecN implements Vec {
     }
 
     /**
-     * Returns the element at the specified 0-based index.
-     *
-     * @param i the index of the element.
-     * @return the element at the given index.
+     * {@inheritDoc}
      */
     public double get(int i) {
         VecUtil.verifyValidCoord(vector, i);
@@ -54,75 +51,56 @@ public class VecN implements Vec {
     }
 
     /**
-     * Returns the size/length/dimension of the vector.
-     *
-     * @return the vector's size/length/dimension.
+     * {@inheritDoc}
      */
-    public double size() {
+    public int size() {
         return vector.length;
     }
 
     /**
-     * Returns the magnitude of the vector.
-     *
-     * @return the magnitude.
+     * {@inheritDoc}
      */
     public double magnitude() {
         return VecUtil.magnitude(vector);
     }
 
     /**
-     * Returns the normalized form of the vector.
-     *
-     * @return the normalized form.
+     * {@inheritDoc}
      */
     public VecN normalize() {
         return new VecN(VecUtil.normalize(vector));
     }
 
     /**
-     * Returns the vector formed by inverting the sign of all the elements.
-     *
-     * @return the inverted vector.
+     * {@inheritDoc}
      */
     public VecN invert() {
         return new VecN(VecUtil.invert(vector));
     }
 
     /**
-     * Calculates the sum of this vector with the passed vector.
-     *
-     * @param vec the vector being added.
-     * @return the sum.
+     * {@inheritDoc}
      */
     public VecN add(Vec vec) {
         return new VecN(VecUtil.add(vector, vec.toArray()));
     }
 
     /**
-     * Calculates the difference of this vector with the passed vector.
-     *
-     * @param vec the vector being subtracted.
-     * @return the difference.
+     * {@inheritDoc}
      */
     public VecN subtract(Vec vec) {
         return new VecN(VecUtil.subtract(vector, vec.toArray()));
     }
 
     /**
-     * Calculates the dot product of this vector with the passed vector.
-     *
-     * @param vec the vector being multiplied.
-     * @return the dot product.
+     * {@inheritDoc}
      */
     public double dot(Vec vec) {
         return VecUtil.multiply(vector, vec.toArray());
     }
 
     /**
-     * Creates an array representation of the vector.
-     *
-     * @return the array.
+     * {@inheritDoc}
      */
     public double[] toArray() {
         return vector.clone();
@@ -130,7 +108,7 @@ public class VecN implements Vec {
 
     @Override
     public String toString() {
-        return Arrays.toString(vector);
+        return VecUtil.stringify(vector, 4);
     }
 
     @Override
@@ -147,7 +125,7 @@ public class VecN implements Vec {
             return false;
         }
         VecN vec = (VecN) obj;
-        // Vectors of different sizes cannot be equal.
+        // Vectors of different dimensions cannot be equal.
         if(vec.size() != size()) {
             return false;
         }

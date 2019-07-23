@@ -417,6 +417,19 @@ class MatUtil {
     }
 
     /**
+     * Throws an IllegalArgumentException at runtime if the given row is out of bounds of the
+     * matrix.
+     */
+    static void verifyValidRow(double[][] mat, int row) {
+        try {
+            double val = mat[0][row];
+        } catch (IndexOutOfBoundsException e) {
+            throw new IllegalArgumentException(String.format("Row at position %d does not " +
+                    "exist in the matrix:\n%s", row, stringify(mat, 2)));
+        }
+    }
+
+    /**
      * Throws an InvalidInputException at runtime if the given matrix is not invertible.
      */
     static void verifyInvertibleMatrix(double[][] mat) {

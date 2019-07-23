@@ -45,9 +45,7 @@ public class Vec2 extends VecN {
     }
 
     /**
-     * Returns the normalized form of the vector.
-     *
-     * @return the normalized form.
+     * {@inheritDoc}
      */
     @Override
     public Vec2 normalize() {
@@ -55,9 +53,7 @@ public class Vec2 extends VecN {
     }
 
     /**
-     * Returns the vector formed by inverting the sign of all the elements.
-     *
-     * @return the inverted vector.
+     * {@inheritDoc}
      */
     @Override
     public Vec2 invert() {
@@ -65,10 +61,7 @@ public class Vec2 extends VecN {
     }
 
     /**
-     * Calculates the sum of this vector with the passed vector.
-     *
-     * @param vec the vector being added.
-     * @return the sum.
+     * {@inheritDoc}
      */
     @Override
     public Vec2 add(Vec vec) {
@@ -76,10 +69,7 @@ public class Vec2 extends VecN {
     }
 
     /**
-     * Calculates the difference of this vector with the passed vector.
-     *
-     * @param vec the vector being subtracted.
-     * @return the difference.
+     * {@inheritDoc}
      */
     @Override
     public Vec2 subtract(Vec vec) {

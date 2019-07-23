@@ -8,6 +8,20 @@ import com.github.jordanpottruff.jgml.vectors.Vec;
 public interface Mat {
 
     /**
+     * Returns the number of rows in the matrix.
+     *
+     * @return the number of rows.
+     */
+    int rows();
+
+    /**
+     * Returns the number of columns in the matrix.
+     *
+     * @return the number of columns.
+     */
+    int cols();
+
+    /**
      * Returns the row at the specified 0-based index.
      *
      * @param i the index of the row.
@@ -78,4 +92,11 @@ public interface Mat {
      * @return the product, always a matrix.
      */
     Mat multiply(Mat mat);
+
+    /**
+     * Creates an array representation of the matrix.
+     *
+     * @return the matrix.
+     */
+    double[][] toArray();
 }

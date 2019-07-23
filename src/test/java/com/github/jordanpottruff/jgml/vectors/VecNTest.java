@@ -16,13 +16,13 @@ public class VecNTest {
     private final VecN vec4A = new VecN(new double[]{10.0, 100.0, 1000.0, 10000.0});
     private final VecN vec4B = new VecN(new double[]{-10000.0, -1000.0, -100.0, -10.0});
 
-    public static void assertVectorsEqual(VecN expected, VecN actual, double error) {
+    static void assertVectorsEqual(VecN expected, VecN actual, double error) {
         assertTrue(expected.equals(actual, error));
     }
 
     @Test
     public void testCreateFrom() {
-        double[] components = new double[]{1.0, -2.0, 101.35, 61303.3214};
+        double[] components = {1.0, -2.0, 101.35, 61303.3214};
         ArrayList<Double> arrayList = new ArrayList<>();
         for(double component: components) {
             arrayList.add(component);

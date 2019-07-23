@@ -66,9 +66,7 @@ public class Vec3 extends VecN implements CrossProductVec {
     }
 
     /**
-     * Returns the normalized form of the vector.
-     *
-     * @return the normalized form.
+     * {@inheritDoc}
      */
     @Override
     public Vec3 normalize() {
@@ -76,9 +74,7 @@ public class Vec3 extends VecN implements CrossProductVec {
     }
 
     /**
-     * Returns the vector formed by inverting the sign of all the elements.
-     *
-     * @return the inverted vector.
+     * {@inheritDoc}
      */
     @Override
     public Vec3 invert() {
@@ -86,10 +82,7 @@ public class Vec3 extends VecN implements CrossProductVec {
     }
 
     /**
-     * Calculates the sum of this vector with the passed vector.
-     *
-     * @param vec the vector being added.
-     * @return the sum.
+     * {@inheritDoc}
      */
     @Override
     public Vec3 add(Vec vec) {
@@ -97,10 +90,7 @@ public class Vec3 extends VecN implements CrossProductVec {
     }
 
     /**
-     * Calculates the difference of this vector with the passed vector.
-     *
-     * @param vec the vector being subtracted.
-     * @return the difference.
+     * {@inheritDoc}
      */
     @Override
     public Vec3 subtract(Vec vec) {
@@ -108,10 +98,7 @@ public class Vec3 extends VecN implements CrossProductVec {
     }
 
     /**
-     * Calculates the cross product of this vector with the passed vector.
-     *
-     * @param vec the vector being multiplied.
-     * @return the cross product.
+     * {@inheritDoc}
      */
     @Override
     public Vec3 cross(CrossProductVec vec) {
