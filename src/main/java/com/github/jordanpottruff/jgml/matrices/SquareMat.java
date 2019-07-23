@@ -3,7 +3,7 @@ package com.github.jordanpottruff.jgml.matrices;
 /**
  * A matrix whose dimensions are equal.
  */
-public interface SquareMat {
+public interface SquareMat extends Mat {
 
     /**
      * Calculates the determinant of the matrix.
