@@ -10,6 +10,7 @@ public interface Vec {
      *
      * @param i the index of the element.
      * @return the element at the given index.
+     * @throws IllegalArgumentException if the index is out of range.
      */
     double get(int i);
 
@@ -46,6 +47,7 @@ public interface Vec {
      *
      * @param vec the vector being added.
      * @return the sum.
+     * @throws IllegalArgumentException if the vector is of a different dimension (size).
      */
     Vec add(Vec vec);
 
@@ -54,6 +56,7 @@ public interface Vec {
      *
      * @param vec the vector being subtracted.
      * @return the difference.
+     * @throws IllegalArgumentException if the vector is of a different dimension (size).
      */
     Vec subtract(Vec vec);
 
@@ -62,6 +65,7 @@ public interface Vec {
      *
      * @param vec the vector being multiplied.
      * @return the dot product.
+     * @throws IllegalArgumentException if the vector is of a different dimension (size).
      */
     double dot(Vec vec);
 

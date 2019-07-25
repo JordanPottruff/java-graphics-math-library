@@ -6,10 +6,11 @@ package com.github.jordanpottruff.jgml.vectors;
 public class Vec3 extends VecN implements CrossProductVec {
 
     /**
-     * Constructs a Vec3 from an array of elements. The array must have exactly three elements or an
-     * IllegalArgumentException will be thrown.
+     * Constructs a Vec3 from an array of elements. The array must contain exactly three elements.
+     * The order of the elements is preserved.
      *
      * @param array an array of elements.
+     * @throws IllegalArgumentException if the array does not contain exactly three elements.
      */
     public Vec3(double[] array) {
         super(array);

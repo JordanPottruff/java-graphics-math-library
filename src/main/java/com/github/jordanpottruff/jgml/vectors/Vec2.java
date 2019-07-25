@@ -6,10 +6,11 @@ package com.github.jordanpottruff.jgml.vectors;
 public class Vec2 extends VecN {
 
     /**
-     * Constructs a Vec2 from an array of elements. The array must have exactly two elements or an
-     * IllegalArgumentException will be thrown.
+     * Constructs a Vec2 from an array of elements. The array must contain exactly two elements. The
+     * order of the elements is preserved.
      *
      * @param array an array of elements.
+     * @throws IllegalArgumentException if the array does not contain exactly two elements.
      */
     public Vec2(double[] array) {
         super(array);

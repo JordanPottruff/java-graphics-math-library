@@ -5,17 +5,18 @@ import java.util.Arrays;
 
 /**
  * The root of the hierarchy of concrete vector implementations. A VecN is a generalized vector of
- * any dimension N greater or equal to 2.
+ * any dimension N greater or equal to two.
  */
 public class VecN implements Vec {
 
     private final double[] vector;
 
     /**
-     * Constructs a VecN from an array of elements. The array must have at least two elements or an
-     * IllegalArgumentException will be thrown.
+     * Constructs a VecN from an array of elements. The array must have at least two elements. The
+     * order of the elements is preserved.
      *
      * @param array an array of elements.
+     * @throws IllegalArgumentException if the array does not contain at least two elements.
      */
     public VecN(double[] array) {
         VecUtil.verifyMinimumDimension(array, 2);
@@ -23,12 +24,12 @@ public class VecN implements Vec {
     }
 
     /**
-     * Creates a VecN from an iterable of elements. The iterable must contain two or more
-     * elements or else an IllegalArgumentException will be thrown. The VecN's elements will follow
-     * the order provided by the iterable.
+     * Creates a VecN from an iterable of elements. The iterable must contain two or more elements.
+     * The order of the elements will be based on the order provided by the iterable.
      *
      * @param iterable an iterable of elements.
      * @return a new VecN composed of the iterable's elements.
+     * @throws IllegalArgumentException if the iterable does not contain at least two items.
      */
     public static VecN createFrom(Iterable<Double> iterable) {
         ArrayList<Double> items = new ArrayList<>();

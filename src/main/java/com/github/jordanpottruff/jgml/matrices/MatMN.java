@@ -15,11 +15,14 @@ public class MatMN implements Mat {
     private final double[][] matrix;
 
     /**
-     * Constructs a MatMN from a 2D array of elements, representing an array of column vectors. The
-     * array must contain at least two column vectors, all sharing the same dimension which must be
-     * a minimum of two.
+     * Constructs a MatMN from a two-dimensional array of elements. The outer-array must contain two
+     * or more inner-arrays, with each being the same length (uniform) and containing at least two
+     * elements. The inner-arrays will be the column vectors of the new MatMN object.
      *
      * @param array the 2D array of elements.
+     * @throws IllegalArgumentException if the inner-arrays are not of equal length (non-uniform).
+     * @throws IllegalArgumentException if the outer-array is not of length two or greater or if the
+     * inner-arrays are not of length two or greater (MatMN must be of dimension 2x2 or greater).
      */
     public MatMN(double[][] array) {
         MatUtil.verifyUniformMatrix(array);
@@ -28,12 +31,15 @@ public class MatMN implements Mat {
     }
 
     /**
-     * Creates a MatMN from an iterable of vectors, representing column vectors of the matrix. The
-     * iterable must contain at least two column vectors, all sharing the same dimension which must
-     * be a minimum of two.
+     * Creates a MatMN from an iterable of vectors. The iterable must contain at least two vectors,
+     * each of the same dimension and containing at least two elements. These vectors will be the
+     * column vectors of the new MatMN object.
      *
      * @param vectors the iterable of column vectors.
      * @return a new MatMN composed of the iterable's column vectors.
+     * @throws IllegalArgumentException if the vectors are not of equal dimension (non-uniform).
+     * @throws IllegalArgumentException if the iterable does not contain at least two vectors or if
+     * the vectors are not of dimension 2 or greater (MatMN must be of dimension 2x2 or greater).
      */
     public static MatMN createFrom(Iterable<Vec> vectors) {
         int n = 0;

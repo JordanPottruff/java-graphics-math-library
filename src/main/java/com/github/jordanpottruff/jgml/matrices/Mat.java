@@ -26,6 +26,7 @@ public interface Mat {
      *
      * @param i the index of the row.
      * @return the row at the given index.
+     * @throws IllegalArgumentException if the index is out of range.
      */
     Vec getRow(int i);
 
@@ -34,6 +35,7 @@ public interface Mat {
      *
      * @param i the index of the column.
      * @return the column at the given index.
+     * @throws IllegalArgumentException if the index is out of range.
      */
     Vec getCol(int i);
 
@@ -43,6 +45,7 @@ public interface Mat {
      * @param row the row index.
      * @param col the column index.
      * @return the element at (row,col)
+     * @throws IllegalArgumentException if one of the indices is out of range.
      */
     double get(int row, int col);
 
@@ -58,6 +61,7 @@ public interface Mat {
      *
      * @param mat the matrix being added.
      * @return the sum.
+     * @throws IllegalArgumentException if the matrix has different dimensions.
      */
     Mat add(Mat mat);
 
@@ -66,6 +70,7 @@ public interface Mat {
      *
      * @param mat the matrix being subtracted.
      * @return the difference.
+     * @throws IllegalArgumentException if the matrix has different dimensions.
      */
     Mat subtract(Mat mat);
 
@@ -82,6 +87,8 @@ public interface Mat {
      *
      * @param vec the vector to multiply by.
      * @return the product, always a vector.
+     * @throws IllegalArgumentException if the dimension of the vector is not equal to the number
+     * of columns in this matrix.
      */
     Vec multiply(Vec vec);
 
@@ -90,6 +97,8 @@ public interface Mat {
      *
      * @param mat the matrix to be multiply by.
      * @return the product, always a matrix.
+     * @throws IllegalArgumentException if the number of columns in this matrix is not equal to the
+     * number of rows in the passed matrix.
      */
     Mat multiply(Mat mat);
 
