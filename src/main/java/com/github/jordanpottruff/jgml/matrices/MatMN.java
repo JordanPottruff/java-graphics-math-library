@@ -22,7 +22,8 @@ public class MatMN implements Mat {
      * @param array the 2D array of elements.
      * @throws IllegalArgumentException if the inner-arrays are not of equal length (non-uniform).
      * @throws IllegalArgumentException if the outer-array is not of length two or greater or if the
-     * inner-arrays are not of length two or greater (MatMN must be of dimension 2x2 or greater).
+     *                                  inner-arrays are not of length two or greater (MatMN must
+     *                                  be of dimension 2x2 or greater).
      */
     public MatMN(double[][] array) {
         MatUtil.verifyUniformMatrix(array);
@@ -39,18 +40,19 @@ public class MatMN implements Mat {
      * @return a new MatMN composed of the iterable's column vectors.
      * @throws IllegalArgumentException if the vectors are not of equal dimension (non-uniform).
      * @throws IllegalArgumentException if the iterable does not contain at least two vectors or if
-     * the vectors are not of dimension 2 or greater (MatMN must be of dimension 2x2 or greater).
+     *                                  the vectors are not of dimension 2 or greater (MatMN must
+     *                                  be of dimension 2x2 or greater).
      */
     public static MatMN createFrom(Iterable<Vec> vectors) {
         int n = 0;
-        for(Vec vec: vectors) {
+        for (Vec vec : vectors) {
             n++;
         }
 
         double[][] matrix = new double[n][];
 
-        int c=0;
-        for(Vec vec: vectors) {
+        int c = 0;
+        for (Vec vec : vectors) {
             matrix[c++] = vec.toArray();
         }
         return new MatMN(matrix);
@@ -76,7 +78,7 @@ public class MatMN implements Mat {
     public VecN getRow(int i) {
         MatUtil.verifyValidRow(matrix, i);
         ArrayList<Double> row = new ArrayList<>();
-        for(int c=0; c<matrix.length; c++) {
+        for (int c = 0; c < matrix.length; c++) {
             row.add(matrix[c][i]);
         }
         return VecN.createFrom(row);
@@ -149,21 +151,59 @@ public class MatMN implements Mat {
 
     @Override
     public String toString() {
-        return MatUtil.stringify(matrix, 4);
+        return formatToString("%f");
+    }
+
+    /**
+     * Returns a string representation of the matrix where each element is limited to a specific
+     * number of decimals.
+     *
+     * @param decimals the number of decimals each element should have.
+     * @return the string representation.
+     * @throws IllegalArgumentException if the specified decimal amount is less than zero.
+     */
+    public String toString(int decimals) {
+        return formatToString("%." + decimals + "f");
+    }
+
+    private String formatToString(String format) {
+        // This will store the longest string-representation for any value in each column.
+        int[] maxColStrLen = new int[cols()];
+
+        for (int c = 0; c < cols(); c++) {
+            // Find the longest string-representation of a value in the current column.
+            for (int r = 0; r < rows(); r++) {
+                int curStrLen = String.format(format, matrix[c][r]).length();
+                maxColStrLen[c] = Math.max(maxColStrLen[c], curStrLen);
+            }
+        }
+
+        StringBuilder result = new StringBuilder();
+        // To create the string correctly, we have to iterate through each row first.
+        for (int r = 0; r < rows(); r++) {
+            for (int c = 0; c < cols(); c++) {
+                result.append(String.format("[%" + maxColStrLen[c] + "s]", String.format(format,
+                        matrix[c][r])));
+            }
+            if (r != rows() - 1) {
+                result.append("\n");
+            }
+        }
+        return result.toString();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof MatMN)) {
+        if (obj == null || obj.getClass() != getClass()) {
             return false;
         }
         MatMN mat = (MatMN) obj;
         // Matrices of different dimensions cannot be equal.
-        if(cols() != mat.cols() || rows() != mat.rows()) {
+        if (cols() != mat.cols() || rows() != mat.rows()) {
             return false;
         }
-        for(int c=0; c<cols(); c++) {
-            if(!Arrays.equals(matrix[c], mat.matrix[c])) {
+        for (int c = 0; c < cols(); c++) {
+            if (!Arrays.equals(matrix[c], mat.matrix[c])) {
                 return false;
             }
         }
@@ -171,17 +211,17 @@ public class MatMN implements Mat {
     }
 
     public boolean equals(Object obj, double error) {
-        if(!(obj instanceof MatMN)) {
+        if (obj == null || obj.getClass() != getClass()) {
             return false;
         }
         MatMN mat = (MatMN) obj;
         // Matrices of different dimensions cannot be equal.
-        if(cols() != mat.cols() || rows() != mat.rows()) {
+        if (cols() != mat.cols() || rows() != mat.rows()) {
             return false;
         }
-        for(int c=0; c<cols(); c++) {
-            for(int r=0; r<rows(); r++) {
-                if(Math.abs(matrix[c][r] - mat.matrix[c][r]) > error) {
+        for (int c = 0; c < cols(); c++) {
+            for (int r = 0; r < rows(); r++) {
+                if (Math.abs(matrix[c][r] - mat.matrix[c][r]) > error) {
                     return false;
                 }
             }
@@ -189,17 +229,17 @@ public class MatMN implements Mat {
         return true;
     }
 
-    private static double[][] arrayCopy(double[][] array) {
-        int n = array.length;
-        double[][] arrayCopy = new double[n][];
-        for(int i=0; i<n; i++) {
-            arrayCopy[i] = array[i].clone();
-        }
-        return arrayCopy;
-    }
-
     @Override
     public int hashCode() {
         return Arrays.hashCode(matrix);
+    }
+
+    private static double[][] arrayCopy(double[][] array) {
+        int n = array.length;
+        double[][] arrayCopy = new double[n][];
+        for (int i = 0; i < n; i++) {
+            arrayCopy[i] = array[i].clone();
+        }
+        return arrayCopy;
     }
 }

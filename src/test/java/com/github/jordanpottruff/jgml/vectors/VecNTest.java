@@ -24,7 +24,7 @@ public class VecNTest {
     public void testCreateFrom() {
         double[] components = {1.0, -2.0, 101.35, 61303.3214};
         ArrayList<Double> arrayList = new ArrayList<>();
-        for(double component: components) {
+        for (double component : components) {
             arrayList.add(component);
         }
 
@@ -97,5 +97,17 @@ public class VecNTest {
     public void testDot() {
         assertEquals(-55.982, vec3A.dot(vec3B), ERROR_MARGIN);
         assertEquals(-400000.0, vec4A.dot(vec4B), ERROR_MARGIN);
+    }
+
+    @Test
+    public void testToString() {
+        String expected = "[1.000000]\n[2.000000]\n[3.000000]";
+        assertEquals(expected, vec3A.toString());
+    }
+
+    @Test
+    public void testToString_decimals() {
+        String expected = "[1.00]\n[2.00]\n[3.00]";
+        assertEquals(expected, vec3A.toString(2));
     }
 }

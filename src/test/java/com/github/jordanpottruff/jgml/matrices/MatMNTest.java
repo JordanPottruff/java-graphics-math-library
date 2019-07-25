@@ -14,8 +14,10 @@ public class MatMNTest {
 
     private static final MatMN MAT2X2_A = new MatMN(new double[][]{{1.0f, 2.3f}, {-1.5f, 0.5f}});
     private static final MatMN MAT2X2_B = new MatMN(new double[][]{{3.2f, -1.1f}, {6.5f, -2.3f}});
-    private static final MatMN MAT2X3_A = new MatMN(new double[][]{{1.0f, 2.0f},{3.0f, 4.0f}, {5.0f, 6.0f}});
-    private static final MatMN MAT3X2_A = new MatMN(new double[][]{{1.0f, 3.3f, 1.2f},{-3.3f, 2.3f, 1.4f}});
+    private static final MatMN MAT2X3_A = new MatMN(new double[][]{{1.0f, 2.0f}, {3.0f, 4.0f},
+            {5.0f, 6.0f}});
+    private static final MatMN MAT3X2_A = new MatMN(new double[][]{{1.0f, 3.3f, 1.2f}, {-3.3f,
+            2.3f, 1.4f}});
 
     private static final VecN VEC2_A = new VecN(new double[]{-2.3, 3.2});
 
@@ -107,5 +109,17 @@ public class MatMNTest {
     public void testMultiply_mat() {
         MatMN product = new MatMN(new double[][]{{16.9, 22.4}, {10.6, 11}});
         assertMatricesEqual(product, MAT2X3_A.multiply(MAT3X2_A), ERROR_MARGIN);
+    }
+
+    @Test
+    public void testToString() {
+        String expected = "[1.000000][-1.500000]\n[2.300000][ 0.500000]";
+        assertEquals(expected, MAT2X2_A.toString());
+    }
+
+    @Test
+    public void testToString_decimals() {
+        String expected = "[1.00][-1.50]\n[2.30][ 0.50]";
+        assertEquals(expected, MAT2X2_A.toString(2));
     }
 }

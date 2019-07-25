@@ -33,11 +33,11 @@ public class VecN implements Vec {
      */
     public static VecN createFrom(Iterable<Double> iterable) {
         ArrayList<Double> items = new ArrayList<>();
-        for(double item: iterable) {
+        for (double item : iterable) {
             items.add(item);
         }
         double[] vector = new double[items.size()];
-        for(int i=0; i<vector.length; i++) {
+        for (int i = 0; i < vector.length; i++) {
             vector[i] = items.get(i);
         }
         return new VecN(vector);
@@ -109,12 +109,42 @@ public class VecN implements Vec {
 
     @Override
     public String toString() {
-        return VecUtil.stringify(vector, 4);
+        return formatToString("%f");
+    }
+
+    /**
+     * Returns a string representation of the vector where each element is limited to a specific
+     * number of decimals.
+     *
+     * @param decimals the number of decimals each element should have.
+     * @return the string representation.
+     * @throws IllegalArgumentException if the specified decimal amount is less than zero.
+     */
+    public String toString(int decimals) {
+        return formatToString("%." + decimals + "f");
+    }
+
+    private String formatToString(String format) {
+        int maxStrLen = 0;
+        for (int i = 0; i < size(); i++) {
+            int curStrLen = String.format(format, vector[i]).length();
+            maxStrLen = Math.max(maxStrLen, curStrLen);
+        }
+
+        StringBuilder result = new StringBuilder();
+        // To create the string correctly, we have to iterate through each row first.
+        for (int i = 0; i < size(); i++) {
+            result.append(String.format("[%" + maxStrLen + "s]", String.format(format, vector[i])));
+            if (i != size() - 1) {
+                result.append("\n");
+            }
+        }
+        return result.toString();
     }
 
     @Override
     public boolean equals(Object obj) {
-        if(!(obj instanceof VecN)) {
+        if (obj == null || obj.getClass() != getClass()) {
             return false;
         }
         VecN vec = (VecN) obj;
@@ -122,17 +152,17 @@ public class VecN implements Vec {
     }
 
     public boolean equals(Object obj, double error) {
-        if(!(obj instanceof VecN)) {
+        if (obj == null || obj.getClass() != getClass()) {
             return false;
         }
         VecN vec = (VecN) obj;
         // Vectors of different dimensions cannot be equal.
-        if(vec.size() != size()) {
+        if (vec.size() != size()) {
             return false;
         }
-        for(int i=0; i<size(); i++) {
+        for (int i = 0; i < size(); i++) {
             // Check if their corresponding components are equal within the given error.
-            if(Math.abs(vec.vector[i] - vector[i]) > error) {
+            if (Math.abs(vec.vector[i] - vector[i]) > error) {
                 return false;
             }
         }
