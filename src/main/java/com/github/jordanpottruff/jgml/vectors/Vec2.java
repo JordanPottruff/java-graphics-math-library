@@ -6,15 +6,26 @@ package com.github.jordanpottruff.jgml.vectors;
 public class Vec2 extends VecN {
 
     /**
-     * Constructs a Vec2 from an array of elements. The array must contain exactly two elements. The
-     * order of the elements is preserved.
+     * Constructs a Vec2 from the first two values of an array. The array must contain at least two
+     * values. The order of the elements is preserved.
      *
-     * @param array an array of elements.
-     * @throws IllegalArgumentException if the array does not contain exactly two elements.
+     * @param array an array containing at least two elements.
+     * @throws IllegalArgumentException if the array does not contain at least two elements.
      */
     public Vec2(double[] array) {
         super(array);
-        VecUtil.verifyExactDimension(array, 2);
+        VecUtil.verifyMinimumDimension(array, 2);
+    }
+
+    /**
+     * Constructs a Vec2 from the first two elements of a vector object. The vector must contain at
+     * least two values.
+     *
+     * @param vec a vector containing at least two elements.
+     * @throws IllegalArgumentException if the vector does not contain at least two elements.
+     */
+    public Vec2(Vec vec) {
+        super(vec.toArray());
     }
 
     /**

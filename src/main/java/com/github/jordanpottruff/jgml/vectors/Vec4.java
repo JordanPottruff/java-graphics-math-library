@@ -6,15 +6,26 @@ package com.github.jordanpottruff.jgml.vectors;
 public class Vec4 extends VecN implements CrossProductVec {
 
     /**
-     * Constructs a Vec4 from an array of elements. The array must contain exactly four elements.
-     * The order of the elements is preserved.
+     * Constructs a Vec4 from the first four values of an array. The array must contain at least
+     * four values. The order of the elements is preserved.
      *
-     * @param array an array of elements.
-     * @throws IllegalArgumentException if the array does not contain exactly four elements.
+     * @param array an array containing at least four elements.
+     * @throws IllegalArgumentException if the array does not contain at least four elements.
      */
     public Vec4(double[] array) {
         super(array);
-        VecUtil.verifyExactDimension(array, 4);
+        VecUtil.verifyMinimumDimension(array, 4);
+    }
+
+    /**
+     * Constructs a Vec4 from the first four elements of a vector object. The vector must contain
+     * at least four values.
+     *
+     * @param vec a vector containing at least four elements.
+     * @throws IllegalArgumentException if the vector does not contain at least four elements.
+     */
+    public Vec4(Vec vec) {
+        super(vec.toArray());
     }
 
     /**
