@@ -1,7 +1,4 @@
-package com.github.jordanpottruff.jgml.matrices;
-
-import com.github.jordanpottruff.jgml.vectors.Vec;
-import com.github.jordanpottruff.jgml.vectors.VecN;
+package com.github.jordanpottruff.jgml;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,8 +1,8 @@
-package com.github.jordanpottruff.jgml.vectors;
+package com.github.jordanpottruff.jgml;
 
 import org.junit.Test;
 
-import static com.github.jordanpottruff.jgml.vectors.VecNTest.assertVectorsEqual;
+import static com.github.jordanpottruff.jgml.VecNTest.assertVectorsEqual;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Vec2Test {

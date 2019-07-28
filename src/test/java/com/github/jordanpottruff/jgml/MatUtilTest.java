@@ -1,8 +1,8 @@
-package com.github.jordanpottruff.jgml.matrices;
+package com.github.jordanpottruff.jgml;
 
 import org.junit.jupiter.api.Test;
 
-import static com.github.jordanpottruff.jgml.matrices.MatUtil.*;
+import static com.github.jordanpottruff.jgml.MatUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 

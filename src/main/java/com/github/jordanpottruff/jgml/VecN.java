@@ -1,4 +1,4 @@
-package com.github.jordanpottruff.jgml.vectors;
+package com.github.jordanpottruff.jgml;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,8 +1,8 @@
-package com.github.jordanpottruff.jgml.vectors;
+package com.github.jordanpottruff.jgml;
 
 import org.junit.jupiter.api.Test;
 
-import static com.github.jordanpottruff.jgml.vectors.VecUtil.*;
+import static com.github.jordanpottruff.jgml.VecUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;

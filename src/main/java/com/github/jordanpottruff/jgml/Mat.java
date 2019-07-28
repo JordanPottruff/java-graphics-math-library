@@ -1,6 +1,4 @@
-package com.github.jordanpottruff.jgml.matrices;
-
-import com.github.jordanpottruff.jgml.vectors.Vec;
+package com.github.jordanpottruff.jgml;
 
 /**
  * The definition of the core functionality for a generalized matrix.

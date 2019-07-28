@@ -1,4 +1,4 @@
-package com.github.jordanpottruff.jgml.matrices;
+package com.github.jordanpottruff.jgml;
 
 class MatUtil {
 

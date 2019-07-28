@@ -1,4 +1,4 @@
-package com.github.jordanpottruff.jgml.vectors;
+package com.github.jordanpottruff.jgml;
 
 /**
  * The definition of the core functionality for a generalized vector.

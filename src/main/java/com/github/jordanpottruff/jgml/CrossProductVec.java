@@ -1,4 +1,4 @@
-package com.github.jordanpottruff.jgml.vectors;
+package com.github.jordanpottruff.jgml;
 
 /**
  * A vector capable of computing a cross product in three-dimensional space.
