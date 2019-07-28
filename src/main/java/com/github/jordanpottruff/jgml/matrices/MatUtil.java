@@ -158,7 +158,7 @@ class MatUtil {
         verifySquareMatrix(mat);
         verifyValidCoord(mat, row, col);
 
-        return (double) Math.pow(-1, row + col + 2) * minor(mat, row, col);
+        return Math.pow(-1, row + col + 2) * minor(mat, row, col);
     }
 
     /**
