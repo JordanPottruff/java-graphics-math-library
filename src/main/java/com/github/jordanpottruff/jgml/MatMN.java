@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class MatMN implements Mat {
 
-    private final double[][] matrix;
+    final double[][] matrix;
 
     /**
      * Constructs a MatMN from a two-dimensional array of elements. The outer-array must contain two
