@@ -19,7 +19,7 @@ public class VecN implements Vec {
      * @throws IllegalArgumentException if the array does not contain at least two elements.
      */
     public VecN(double[] array) {
-        VecUtil.verifyMinimumDimension(array, 2);
+        Util.verifyMinimumDimension(array, 2);
         this.vector = array.clone();
     }
 
@@ -58,7 +58,7 @@ public class VecN implements Vec {
      * {@inheritDoc}
      */
     public double get(int i) {
-        VecUtil.verifyValidCoord(vector, i);
+        Util.verifyValidCoord(vector, i);
         return vector[i];
     }
 
@@ -73,42 +73,42 @@ public class VecN implements Vec {
      * {@inheritDoc}
      */
     public double magnitude() {
-        return VecUtil.magnitude(vector);
+        return Util.magnitude(vector);
     }
 
     /**
      * {@inheritDoc}
      */
     public VecN normalize() {
-        return new VecN(VecUtil.normalize(vector));
+        return new VecN(Util.normalize(vector));
     }
 
     /**
      * {@inheritDoc}
      */
     public VecN invert() {
-        return new VecN(VecUtil.invert(vector));
+        return new VecN(Util.invert(vector));
     }
 
     /**
      * {@inheritDoc}
      */
     public VecN add(Vec vec) {
-        return new VecN(VecUtil.add(vector, vec.toArray()));
+        return new VecN(Util.add(vector, vec.toArray()));
     }
 
     /**
      * {@inheritDoc}
      */
     public VecN subtract(Vec vec) {
-        return new VecN(VecUtil.subtract(vector, vec.toArray()));
+        return new VecN(Util.subtract(vector, vec.toArray()));
     }
 
     /**
      * {@inheritDoc}
      */
     public double dot(Vec vec) {
-        return VecUtil.multiply(vector, vec.toArray());
+        return Util.multiply(vector, vec.toArray());
     }
 
     /**
@@ -120,7 +120,7 @@ public class VecN implements Vec {
 
     @Override
     public String toString() {
-        return formatToString("%f");
+        return Util.stringify(vector);
     }
 
     /**
@@ -132,25 +132,7 @@ public class VecN implements Vec {
      * @throws IllegalArgumentException if the specified decimal amount is less than zero.
      */
     public String toString(int decimals) {
-        return formatToString("%." + decimals + "f");
-    }
-
-    private String formatToString(String format) {
-        int maxStrLen = 0;
-        for (int i = 0; i < size(); i++) {
-            int curStrLen = String.format(format, vector[i]).length();
-            maxStrLen = Math.max(maxStrLen, curStrLen);
-        }
-
-        StringBuilder result = new StringBuilder();
-        // To create the string correctly, we have to iterate through each row first.
-        for (int i = 0; i < size(); i++) {
-            result.append(String.format("[%" + maxStrLen + "s]", String.format(format, vector[i])));
-            if (i != size() - 1) {
-                result.append("\n");
-            }
-        }
-        return result.toString();
+        return Util.stringify(vector, decimals);
     }
 
     @Override

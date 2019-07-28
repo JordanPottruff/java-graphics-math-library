@@ -14,7 +14,7 @@ public class Vec4 extends VecN implements CrossProductVec {
      */
     public Vec4(double[] array) {
         super(array);
-        VecUtil.verifyMinimumDimension(array, 4);
+        Util.verifyMinimumDimension(array, 4);
     }
 
     /**
@@ -124,7 +124,7 @@ public class Vec4 extends VecN implements CrossProductVec {
      */
     @Override
     public Vec3 cross(CrossProductVec vec) {
-        return new Vec3(VecUtil.cross(toArray(), vec.toArray()));
+        return new Vec3(Util.cross(toArray(), vec.toArray()));
     }
 
 }

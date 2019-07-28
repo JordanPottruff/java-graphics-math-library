@@ -24,8 +24,8 @@ public class MatMN implements Mat {
      *                                  be of dimension 2x2 or larger).
      */
     public MatMN(double[][] array) {
-        MatUtil.verifyUniformMatrix(array);
-        MatUtil.verifyMinimumDimensions(array, 2, 2);
+        Util.verifyUniformMatrix(array);
+        Util.verifyMinimumDimensions(array, 2, 2);
         matrix = arrayCopy(array);
     }
 
@@ -87,7 +87,7 @@ public class MatMN implements Mat {
      * {@inheritDoc}
      */
     public VecN getRow(int i) {
-        MatUtil.verifyValidRow(matrix, i);
+        Util.verifyValidRow(matrix, i);
         ArrayList<Double> row = new ArrayList<>();
         for (int c = 0; c < matrix.length; c++) {
             row.add(matrix[c][i]);
@@ -99,7 +99,7 @@ public class MatMN implements Mat {
      * {@inheritDoc}
      */
     public VecN getCol(int i) {
-        MatUtil.verifyValidColumn(matrix, i);
+        Util.verifyValidColumn(matrix, i);
         return new VecN(matrix[i]);
     }
 
@@ -107,7 +107,7 @@ public class MatMN implements Mat {
      * {@inheritDoc}
      */
     public double get(int row, int col) {
-        MatUtil.verifyValidCoord(matrix, row, col);
+        Util.verifyValidCoord(matrix, row, col);
         return matrix[col][row];
     }
 
@@ -115,42 +115,42 @@ public class MatMN implements Mat {
      * {@inheritDoc}
      */
     public MatMN invert() {
-        return new MatMN(MatUtil.invert(matrix));
+        return new MatMN(Util.invert(matrix));
     }
 
     /**
      * {@inheritDoc}
      */
     public MatMN add(Mat mat) {
-        return new MatMN(MatUtil.add(matrix, mat.toArray()));
+        return new MatMN(Util.add(matrix, mat.toArray()));
     }
 
     /**
      * {@inheritDoc}
      */
     public MatMN subtract(Mat mat) {
-        return new MatMN(MatUtil.subtract(matrix, mat.toArray()));
+        return new MatMN(Util.subtract(matrix, mat.toArray()));
     }
 
     /**
      * {@inheritDoc}
      */
     public MatMN scale(double scalar) {
-        return new MatMN(MatUtil.scale(matrix, scalar));
+        return new MatMN(Util.scale(matrix, scalar));
     }
 
     /**
      * {@inheritDoc}
      */
     public VecN multiply(Vec vec) {
-        return new VecN(MatUtil.multiply(matrix, vec.toArray()));
+        return new VecN(Util.multiply(matrix, vec.toArray()));
     }
 
     /**
      * {@inheritDoc}
      */
     public MatMN multiply(Mat mat) {
-        return new MatMN(MatUtil.multiply(matrix, mat.toArray()));
+        return new MatMN(Util.multiply(matrix, mat.toArray()));
     }
 
     /**
@@ -162,7 +162,7 @@ public class MatMN implements Mat {
 
     @Override
     public String toString() {
-        return formatToString("%f");
+        return Util.stringify(matrix);
     }
 
     /**
@@ -174,33 +174,7 @@ public class MatMN implements Mat {
      * @throws IllegalArgumentException if the specified decimal amount is less than zero.
      */
     public String toString(int decimals) {
-        return formatToString("%." + decimals + "f");
-    }
-
-    private String formatToString(String format) {
-        // This will store the longest string-representation for any value in each column.
-        int[] maxColStrLen = new int[cols()];
-
-        for (int c = 0; c < cols(); c++) {
-            // Find the longest string-representation of a value in the current column.
-            for (int r = 0; r < rows(); r++) {
-                int curStrLen = String.format(format, matrix[c][r]).length();
-                maxColStrLen[c] = Math.max(maxColStrLen[c], curStrLen);
-            }
-        }
-
-        StringBuilder result = new StringBuilder();
-        // To create the string correctly, we have to iterate through each row first.
-        for (int r = 0; r < rows(); r++) {
-            for (int c = 0; c < cols(); c++) {
-                result.append(String.format("[%" + maxColStrLen[c] + "s]", String.format(format,
-                        matrix[c][r])));
-            }
-            if (r != rows() - 1) {
-                result.append("\n");
-            }
-        }
-        return result.toString();
+        return Util.stringify(matrix, decimals);
     }
 
     @Override

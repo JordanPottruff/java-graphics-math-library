@@ -14,7 +14,7 @@ public class Vec2 extends VecN {
      */
     public Vec2(double[] array) {
         super(array);
-        VecUtil.verifyMinimumDimension(array, 2);
+        Util.verifyMinimumDimension(array, 2);
     }
 
     /**

@@ -1,6 +1,5 @@
 package com.github.jordanpottruff.jgml;
 
-import com.github.jordanpottruff.jgml.VecN;
 import org.junit.Test;
 
 import java.util.ArrayList;

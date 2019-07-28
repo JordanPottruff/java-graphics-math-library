@@ -2,19 +2,24 @@ package com.github.jordanpottruff.jgml;
 
 import org.junit.jupiter.api.Test;
 
-import static com.github.jordanpottruff.jgml.MatUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.github.jordanpottruff.jgml.Util.*;
 
-public class MatUtilTest {
+public class UtilTest {
     // For comparing floating point values
     private static final double EPSILON = 0.001f;
 
     // General vectors
     private static final double[] VEC2_A = {-2.3f, 3.2f};
+    private static final double[] VEC2_B = {1.0f, 2.0f};
     private static final double[] VEC3_A = {1.5f, 3.5f, 2.5f};
     private static final double[] VEC3_B = {-3.2f, 0.0f, 14.1f};
     private static final double[] VEC4_A = {-10.2f, 5.4f, 98.3f, 53.2f};
+    private static final double[] VEC4_B = {432f, 3.3f, -2.2f, 5.6f};
+
+    // Special vectors
+    private static final double[] VEC4_ZERO = {0.0f, 0.0f, 0.0f, 0.0f};
 
     // General matrices
     private static final double[][] MAT2X2_A = {{1.0f, 2.3f}, {-1.5f, 0.5f}};
@@ -60,34 +65,19 @@ public class MatUtilTest {
     }
 
     @Test
-    public void testInvert() {
-        assertTrue(matsEqual(invert(MAT2X2_A), new double[][]{{-1.0f, -2.3f}, {1.5f, -0.5f}}));
+    public void testMagnitude() {
+        assertEquals(magnitude(VEC3_A), 4.555f, EPSILON);
+        assertEquals(magnitude(VEC4_ZERO), 0.0f, EPSILON);
     }
 
     @Test
-    public void testAdd() {
-        assertTrue(matsEqual(add(MAT2X2_A, MAT2X2_B), new double[][]{{4.2f, 1.2f}, {5.0f, -1.8f}}));
-        assertThrows(IllegalArgumentException.class, () -> add(MAT2X2_B, MAT3X2_A));
-    }
-
-    @Test
-    public void testSubtract() {
-        assertTrue(matsEqual(subtract(MAT2X2_A, MAT2X2_B), new double[][]{{-2.2f, 3.4f}, {-8.0f, 2.8f}}));
+    public void testNormalize() {
+        assertTrue(vecsEqual(normalize(VEC3_A), new double[]{0.329f, 0.768f, 0.548f}));
     }
 
     @Test
     public void testScale() {
         assertTrue(matsEqual(scale(MAT2X2_A, 3.0f), new double[][]{{3.0f, 6.9f}, {-4.5f, 1.5f}}));
-    }
-
-    @Test
-    public void testMultiply_vec() {
-        assertTrue(vecsEqual(multiply(MAT2X2_A, VEC2_A), new double[]{-7.1f, -3.69f}));
-    }
-
-    @Test
-    public void testMultiply_mat() {
-        assertTrue(matsEqual(multiply(MAT2X2_A, MAT2X2_B), new double[][]{{4.85f, 6.81f}, {9.95f, 13.8f}}));
     }
 
     @Test
@@ -106,19 +96,82 @@ public class MatUtilTest {
     }
 
     @Test
-    public void testStringify_vec() {
+    public void testInvert_vec() {
+        assertTrue(vecsEqual(invert(VEC3_A), new double[]{-1.5f, -3.5f, -2.5f}));
+    }
+
+    @Test
+    public void testInvert_mat() {
+        assertTrue(matsEqual(invert(MAT2X2_A), new double[][]{{-1.0f, -2.3f}, {1.5f, -0.5f}}));
+    }
+
+    @Test
+    public void testAdd_vec() {
+        assertTrue(vecsEqual(add(VEC3_A, VEC3_B), new double[]{-1.7f, 3.5f, 16.6f}));
+        assertTrue(vecsEqual(add(VEC4_A, VEC4_B), new double[]{421.8f, 8.7f, 96.1f, 58.8f}));
+        assertThrows(IllegalArgumentException.class, () -> add(VEC3_A, VEC4_A));
+    }
+
+    @Test
+    public void testAdd_mat() {
+        assertTrue(matsEqual(add(MAT2X2_A, MAT2X2_B), new double[][]{{4.2f, 1.2f}, {5.0f, -1.8f}}));
+        assertThrows(IllegalArgumentException.class, () -> add(MAT2X2_B, MAT3X2_A));
+    }
+
+    @Test
+    public void testSubtract_vec() {
+        assertTrue(vecsEqual(subtract(VEC3_A, VEC3_B), new double[]{4.7f, 3.5f, -11.6f}));
+        assertTrue(vecsEqual(subtract(VEC4_A, VEC4_B), new double[]{-442.2f, 2.1f, 100.5f, 47.6f}));
+        assertThrows(IllegalArgumentException.class, () -> subtract(VEC3_B, VEC4_B));
+    }
+
+    @Test
+    public void testSubtract_mat() {
+        assertTrue(matsEqual(subtract(MAT2X2_A, MAT2X2_B), new double[][]{{-2.2f, 3.4f}, {-8.0f, 2.8f}}));
+    }
+
+    @Test
+    public void testMultiply() {
+        assertEquals(30.45f, multiply(VEC3_A, VEC3_B), EPSILON);
+        assertEquals( -4306.92f, multiply(VEC4_A, VEC4_B), EPSILON);
+        assertThrows(IllegalArgumentException.class, () -> multiply(VEC3_B, VEC4_B));
+    }
+
+    @Test
+    public void testMultiply_vec() {
+        assertTrue(vecsEqual(multiply(MAT2X2_A, VEC2_A), new double[]{-7.1f, -3.69f}));
+    }
+
+    @Test
+    public void testMultiply_mat() {
+        assertTrue(matsEqual(multiply(MAT2X2_A, MAT2X2_B), new double[][]{{4.85f, 6.81f}, {9.95f, 13.8f}}));
+    }
+
+    @Test
+    public void testCross() {
+        assertTrue(vecsEqual(new double[]{49.35, -29.15, 11.2}, cross(VEC3_A, VEC3_B)));
+        assertThrows(IllegalArgumentException.class, () -> cross(VEC2_A, VEC2_B));
+    }
+
+    @Test
+    public void testStringify() {
         assertEquals("[-2.30]\n[ 3.20]", stringify(VEC2_A, 2));
         assertEquals("[1.500]\n[3.500]\n[2.500]", stringify(VEC3_A, 3));
     }
 
     @Test
-    public void testStringify_mat() {
-        assertEquals("[ 1.00][-1.50]\n[ 2.30][ 0.50]", stringify(MAT2X2_A, 2));
-        assertEquals("[ 3.2][ 6.5]\n[-1.1][-2.3]", stringify(MAT2X2_B, 1));
+    public void testVerifyExactDimension_vec() {
+        verifyExactDimension(VEC2_A, 2);
+        verifyExactDimension(VEC3_A, 3);
+        verifyExactDimension(VEC4_A, 4);
+
+        assertThrows(IllegalArgumentException.class, () -> verifyExactDimension(VEC2_A, 3));
+        assertThrows(IllegalArgumentException.class, () -> verifyExactDimension(VEC3_A, 4));
+        assertThrows(IllegalArgumentException.class, () -> verifyExactDimension(VEC4_A, 100));
     }
 
     @Test
-    public void testVerifyExactDimension() {
+    public void testVerifyExactDimension_mat() {
         // No exception expected -- test fails if one occurs.
         verifyExactDimension(MAT2X2_A, 2, 2);
         verifyExactDimension(MAT2X3_A, 2, 3);
@@ -127,6 +180,17 @@ public class MatUtilTest {
         assertThrows(IllegalArgumentException.class, () -> verifyExactDimension(MAT2X2_A, 2, 3));
         assertThrows(IllegalArgumentException.class, () -> verifyExactDimension(MAT3X2_A, -1, 2));
         assertThrows(IllegalArgumentException.class, () -> verifyExactDimension(MAT3X3_A, 10000, 10000));
+    }
+
+    @Test
+    public void testMinimumDimension() {
+        verifyMinimumDimension(VEC2_A, 2);
+        verifyMinimumDimension(VEC3_A, 3);
+        verifyMinimumDimension(VEC4_A, 1);
+
+        assertThrows(IllegalArgumentException.class, () -> verifyMinimumDimension(VEC2_A, 3));
+        assertThrows(IllegalArgumentException.class, () -> verifyMinimumDimension(VEC3_A, 10));
+        assertThrows(IllegalArgumentException.class, () -> verifyMinimumDimension(VEC4_A, 5));
     }
 
     @Test
@@ -141,18 +205,51 @@ public class MatUtilTest {
     }
 
     @Test
-    public void testVerifyEqualDimensions() {
+    public void testVerifyEqualDimensions_vec() {
+        // No exception expected -- test fails if one occurs.
+        verifyEqualDimensions(VEC3_A, VEC3_B);
+        verifyEqualDimensions(VEC4_A, VEC4_B);
+
+        assertThrows(IllegalArgumentException.class, () -> verifyEqualDimensions(VEC3_A, VEC4_B));
+        assertThrows(IllegalArgumentException.class, () -> verifyEqualDimensions(VEC2_A, VEC3_B));
+    }
+
+    @Test
+    public void testVerifyEqualDimensions_mat() {
         // No exception expected -- test fails if one occurs.
         verifyEqualDimensions(MAT2X2_A, MAT2X2_B);
         verifyEqualDimensions(MAT3X2_A, MAT3X2_B);
 
         assertThrows(IllegalArgumentException.class, () -> verifyEqualDimensions(MAT2X2_A, MAT3X3_A));
         assertThrows(IllegalArgumentException.class, () -> verifyEqualDimensions(MAT2X2_B, MAT3X2_A));
-
     }
 
     @Test
-    public void testVerifyOperableDimensions_vectorMatrix() {
+    public void testVerifyValidCoord_vec() {
+        // No exception expected -- test fails if one occurs.
+        verifyValidCoord(VEC2_A, 0);
+        verifyValidCoord(VEC3_A, 2);
+        verifyValidCoord(VEC4_A, 3);
+
+        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(VEC2_A, 2));
+        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(VEC3_A, -1));
+        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(VEC4_A, 10000));
+    }
+
+    @Test
+    public void testVerifyValidCoord_mat() {
+        // No exception expected -- test fails if one occurs.
+        verifyValidCoord(MAT2X2_A, 0, 0);
+        verifyValidCoord(MAT3X3_A, 2, 2);
+        verifyValidCoord(MAT2X3_A, 1, 2);
+
+        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(MAT2X2_A, 2, 2));
+        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(MAT3X2_A, 3, -1));
+        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(MAT3X3_A, 10, 10000));
+    }
+
+    @Test
+    public void testVerifyOperableDimensions_vecMat() {
         // No exception expected -- test fails if one occurs.
         verifyOperableDimensions(MAT2X2_A, VEC2_A);
         verifyOperableDimensions(MAT3X3_A, VEC3_A);
@@ -164,7 +261,7 @@ public class MatUtilTest {
     }
 
     @Test
-    public void testVerifyOperableDimensions_matrices() {
+    public void testVerifyOperableDimensions_mats() {
         // No exception expected -- test fails if one occurs.
         verifyOperableDimensions(MAT2X2_A, MAT2X2_B);
         verifyOperableDimensions(MAT2X3_A, MAT3X2_A);
@@ -196,18 +293,6 @@ public class MatUtilTest {
     }
 
     @Test
-    public void testVerifyValidCoord() {
-        // No exception expected -- test fails if one occurs.
-        verifyValidCoord(MAT2X2_A, 0, 0);
-        verifyValidCoord(MAT3X3_A, 2, 2);
-        verifyValidCoord(MAT2X3_A, 1, 2);
-
-        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(MAT2X2_A, 2, 2));
-        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(MAT3X2_A, 3, -1));
-        assertThrows(IllegalArgumentException.class, () -> verifyValidCoord(MAT3X3_A, 10, 10000));
-    }
-
-    @Test
     public void testVerifyValidColumn() {
         // No exception expected -- test fails if one occurs.
         verifyValidColumn(MAT2X2_A, 0);
@@ -220,6 +305,18 @@ public class MatUtilTest {
     }
 
     @Test
+    public void testVerifyValidRow() {
+        // No exception expected -- test fails if one occurs.
+        verifyValidRow(MAT2X2_A, 0);
+        verifyValidRow(MAT3X3_A, 2);
+        verifyValidRow(MAT3X2_A, 2);
+
+        assertThrows(IllegalArgumentException.class, () -> verifyValidRow(MAT2X2_A, -1));
+        assertThrows(IllegalArgumentException.class, () -> verifyValidRow(MAT3X2_A, 3));
+        assertThrows(IllegalArgumentException.class, () -> verifyValidRow(MAT3X3_A, 10000));
+    }
+
+    @Test
     public void testVerifyInvertibleMatrix() {
         double[][] invertibleMatrix = {{1.0f, 3.0f}, {-1.0f, 2.0f}};
         double[][] nonInvertibleMatrix = {{1.0f, 2.0f}, {2.0f, 4.0f}};
@@ -229,4 +326,5 @@ public class MatUtilTest {
 
         assertThrows(IllegalArgumentException.class, () -> verifyInvertibleMatrix(nonInvertibleMatrix));
     }
+
 }
