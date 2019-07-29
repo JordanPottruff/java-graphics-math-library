@@ -283,6 +283,18 @@ class Util {
         return crossProduct;
     }
 
+    /**
+     * Returns an identity matrix of the given size.
+     */
+    static double[][] identity(int size) {
+        double[][] mat = new double[size][size];
+
+        for(int i=0; i<size; i++) {
+            mat[i][i] = 1.0;
+        }
+        return mat;
+    }
+
     static String stringify(double[] vec) {
         return formatStringify("%f", vec);
     }
