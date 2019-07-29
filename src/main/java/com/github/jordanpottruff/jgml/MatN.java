@@ -91,6 +91,17 @@ public class MatN extends MatMN implements SquareMat {
     }
 
     /**
+     * Calculates the multiplication of this square matrix by the passed square matrix.
+     *
+     * @param mat the square matrix to multiply by.
+     * @return the product, always a square matrix.
+     * @throws IllegalArgumentException if dimensions of these matrices differs.
+     */
+    public MatN multiply(MatN mat) {
+        return new MatN(super.multiply(mat));
+    }
+
+    /**
      * {@inheritDoc}
      */
     public double determinant() {
