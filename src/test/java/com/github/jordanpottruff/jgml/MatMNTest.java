@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import static com.github.jordanpottruff.jgml.VecNTest.assertVectorsEqual;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -19,11 +20,7 @@ public class MatMNTest {
 
     private static final VecN VEC2_A = new VecN(new double[]{-2.3, 3.2});
 
-    public static void assertVectorsEqual(VecN expected, VecN actual, double error) {
-        assertTrue(expected.equals(actual, error));
-    }
-
-    public static void assertMatricesEqual(MatMN expected, MatMN actual, double error) {
+    static void assertMatricesEqual(MatMN expected, MatMN actual, double error) {
         assertTrue(expected.equals(actual, error));
     }
 
