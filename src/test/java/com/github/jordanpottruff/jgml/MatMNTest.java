@@ -19,11 +19,11 @@ public class MatMNTest {
 
     private static final VecN VEC2_A = new VecN(new double[]{-2.3, 3.2});
 
-    private static void assertVectorsEqual(VecN expected, VecN actual, double error) {
+    public static void assertVectorsEqual(VecN expected, VecN actual, double error) {
         assertTrue(expected.equals(actual, error));
     }
 
-    private static void assertMatricesEqual(MatMN expected, MatMN actual, double error) {
+    public static void assertMatricesEqual(MatMN expected, MatMN actual, double error) {
         assertTrue(expected.equals(actual, error));
     }
 
