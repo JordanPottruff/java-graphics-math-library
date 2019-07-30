@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class VecN implements Vec {
 
-    private final double[] vector;
+    final double[] vector;
 
     /**
      * Constructs a VecN from an array of elements. The array must have at least two elements. The

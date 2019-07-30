@@ -100,7 +100,7 @@ public class Vec4 extends VecN implements CrossProductVec {
      */
     @Override
     public Vec4 invert() {
-        return new Vec4(super.invert().toArray());
+        return new Vec4(super.invert().vector);
     }
 
     /**
@@ -108,7 +108,7 @@ public class Vec4 extends VecN implements CrossProductVec {
      */
     @Override
     public Vec4 add(Vec vec) {
-        return new Vec4(super.add(vec).toArray());
+        return new Vec4(super.add(vec).vector);
     }
 
     /**
@@ -116,7 +116,7 @@ public class Vec4 extends VecN implements CrossProductVec {
      */
     @Override
     public Vec4 subtract(Vec vec) {
-        return new Vec4(super.subtract(vec).toArray());
+        return new Vec4(super.subtract(vec).vector);
     }
 
     /**
@@ -124,7 +124,7 @@ public class Vec4 extends VecN implements CrossProductVec {
      */
     @Override
     public Vec3 cross(CrossProductVec vec) {
-        return new Vec3(Util.cross(toArray(), vec.toArray()));
+        return new Vec3(Util.cross(vector, vec.toArray()));
     }
 
 }

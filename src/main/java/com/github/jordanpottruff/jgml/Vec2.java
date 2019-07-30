@@ -61,7 +61,7 @@ public class Vec2 extends VecN {
      */
     @Override
     public Vec2 normalize() {
-        return new Vec2(super.normalize().toArray());
+        return new Vec2(super.normalize().vector);
     }
 
     /**
@@ -69,7 +69,7 @@ public class Vec2 extends VecN {
      */
     @Override
     public Vec2 invert() {
-        return new Vec2(super.invert().toArray());
+        return new Vec2(super.invert().vector);
     }
 
     /**
@@ -77,7 +77,7 @@ public class Vec2 extends VecN {
      */
     @Override
     public Vec2 add(Vec vec) {
-        return new Vec2(super.add(vec).toArray());
+        return new Vec2(super.add(vec).vector);
     }
 
     /**
@@ -85,7 +85,7 @@ public class Vec2 extends VecN {
      */
     @Override
     public Vec2 subtract(Vec vec) {
-        return new Vec2(super.subtract(vec).toArray());
+        return new Vec2(super.subtract(vec).vector);
     }
 
 }
