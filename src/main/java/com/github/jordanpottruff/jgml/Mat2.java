@@ -42,7 +42,7 @@ public class Mat2 extends MatN {
     }
 
     /**
-     * Creates a 3x3 identity matrix.
+     * Creates a 2x2 identity matrix.
      *
      * @return the identity matrix.
      */
