@@ -46,7 +46,9 @@ public class Mat4Test {
 
     @Test
     public void testMultiply_mat() {
-        Mat4 product = new Mat4(new double[][]{{450.0, 500.0, 550.0, 600.0}, {1010.0, 1140.0, 1270.0, 1400.0}, {1570.0, 1780.0, 1990.0, 2200.0}, {2130.0, 2420.0, 2710.0, 3000.0}});
+        Mat4 product = new Mat4(new double[][]{{450.0, 500.0, 550.0, 600.0}, {1010.0, 1140.0,
+                1270.0, 1400.0}, {1570.0, 1780.0, 1990.0, 2200.0}, {2130.0, 2420.0, 2710.0,
+                3000.0}});
         assertMatricesEqual(product, MAT_A.multiply(MAT_B), ERROR_MARGIN);
     }
 
@@ -72,68 +74,79 @@ public class Mat4Test {
     @Test
     public void testBuilder_scale() {
         Mat4 scaleMat = new Mat4.TransformBuilder().scale(5.0, 3.0, 2.0).build();
-        Mat4 expected = new Mat4(new double[][]{{5.0, 0.0, 0.0, 0.0}, {0.0, 3.0, 0.0, 0.0}, {0.0, 0.0, 2.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
+        Mat4 expected = new Mat4(new double[][]{{5.0, 0.0, 0.0, 0.0}, {0.0, 3.0, 0.0, 0.0}, {0.0,
+                0.0, 2.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
         assertMatricesEqual(expected, scaleMat, ERROR_MARGIN);
     }
 
     @Test
     public void testBuilder_translate() {
         Mat4 translateMat = new Mat4.TransformBuilder().translate(10.0, -10.0, 25.0).build();
-        Mat4 expected = new Mat4(new double[][]{{1.0, 0.0, 0.0, 0.0}, {0.0, 1.0, 0.0, 0.0}, {0.0, 0.0, 1.0, 0.0}, {10.0, -10.0, 25.0, 1.0}});
+        Mat4 expected = new Mat4(new double[][]{{1.0, 0.0, 0.0, 0.0}, {0.0, 1.0, 0.0, 0.0}, {0.0,
+                0.0, 1.0, 0.0}, {10.0, -10.0, 25.0, 1.0}});
         assertMatricesEqual(expected, translateMat, ERROR_MARGIN);
     }
 
     @Test
     public void testBuilder_rotateX() {
-        Mat4 rotateXMat = new Mat4.TransformBuilder().rotateX(Math.PI/2).build();
-        Mat4 expected = new Mat4(new double[][]{{1.0, 0.0, 0.0, 0.0}, {0.0, 0.0, 1.0, 0.0}, {0.0, -1.0, 0.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
+        Mat4 rotateXMat = new Mat4.TransformBuilder().rotateX(Math.PI / 2).build();
+        Mat4 expected = new Mat4(new double[][]{{1.0, 0.0, 0.0, 0.0}, {0.0, 0.0, 1.0, 0.0}, {0.0,
+                -1.0, 0.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
         assertMatricesEqual(expected, rotateXMat, ERROR_MARGIN);
     }
 
     @Test
     public void testBuilder_rotateY() {
-        Mat4 rotateYMat = new Mat4.TransformBuilder().rotateY(Math.PI/4).build();
-        Mat4 expected = new Mat4(new double[][]{{0.7071, 0.0, -0.7071, 0.0}, {0.0, 1.0, 0.0, 0.0}, {0.7071, 0.0, 0.7071, 0.0}, {0.0, 0.0, 0.0, 1.0}});
+        Mat4 rotateYMat = new Mat4.TransformBuilder().rotateY(Math.PI / 4).build();
+        Mat4 expected = new Mat4(new double[][]{{0.7071, 0.0, -0.7071, 0.0}, {0.0, 1.0, 0.0, 0.0}
+        , {0.7071, 0.0, 0.7071, 0.0}, {0.0, 0.0, 0.0, 1.0}});
         assertMatricesEqual(expected, rotateYMat, ERROR_MARGIN);
     }
 
     @Test
     public void testBuilder_rotateZ() {
-        Mat4 rotateZMat = new Mat4.TransformBuilder().rotateZ(-Math.PI/2).build();
-        Mat4 expected = new Mat4(new double[][]{{0.0, -1.0, 0.0, 0.0}, {1.0, 0.0, 0.0, 0.0}, {0.0, 0.0, 1.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
+        Mat4 rotateZMat = new Mat4.TransformBuilder().rotateZ(-Math.PI / 2).build();
+        Mat4 expected = new Mat4(new double[][]{{0.0, -1.0, 0.0, 0.0}, {1.0, 0.0, 0.0, 0.0}, {0.0
+                , 0.0, 1.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
         assertMatricesEqual(expected, rotateZMat, ERROR_MARGIN);
     }
 
     @Test
     public void testBuilder_shearX() {
         Mat4 shearXMat = new Mat4.TransformBuilder().shearX(1.0, 2.0).build();
-        Mat4 expected = new Mat4(new double[][]{{1.0, 0.0, 0.0, 0.0}, {1.0, 1.0, 0.0, 0.0}, {2.0, 0.0, 1.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
+        Mat4 expected = new Mat4(new double[][]{{1.0, 0.0, 0.0, 0.0}, {1.0, 1.0, 0.0, 0.0}, {2.0,
+                0.0, 1.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
         assertMatricesEqual(expected, shearXMat, ERROR_MARGIN);
     }
 
     @Test
     public void testBuilder_shearY() {
         Mat4 shearYMat = new Mat4.TransformBuilder().shearY(1.0, 2.0).build();
-        Mat4 expected = new Mat4(new double[][]{{1.0, 1.0, 0.0, 0.0}, {0.0, 1.0, 0.0, 0.0}, {0.0, 2.0, 1.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
+        Mat4 expected = new Mat4(new double[][]{{1.0, 1.0, 0.0, 0.0}, {0.0, 1.0, 0.0, 0.0}, {0.0,
+                2.0, 1.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
         assertMatricesEqual(expected, shearYMat, ERROR_MARGIN);
     }
 
     @Test
     public void testBuilder_shearZ() {
         Mat4 shearZMat = new Mat4.TransformBuilder().shearZ(1.0, 2.0).build();
-        Mat4 expected = new Mat4(new double[][]{{1.0, 0.0, 1.0, 0.0}, {0.0, 1.0, 2.0, 0.0}, {0.0, 0.0, 1.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
+        Mat4 expected = new Mat4(new double[][]{{1.0, 0.0, 1.0, 0.0}, {0.0, 1.0, 2.0, 0.0}, {0.0,
+                0.0, 1.0, 0.0}, {0.0, 0.0, 0.0, 1.0}});
         assertMatricesEqual(expected, shearZMat, ERROR_MARGIN);
     }
 
     @Test
     public void testBuilder_chainOperations() {
         // Variety of operations
-        Mat4 transformation = new Mat4.TransformBuilder().rotateX(Math.PI/2).scale(4.0, 2.0, 0.0).translate(10.0, -100.0, 0.0).build();
-        Mat4 expected = new Mat4(new double[][]{{4.0, 0.0, 0.0, 0.0}, {0.0, 0.0, 0.0, 0.0}, {0.0, -2.0, 0.0, 0.0}, {10.0, -100.0, 0.0, 1.0}});
+        Mat4 transformation = new Mat4.TransformBuilder().rotateX(Math.PI / 2).scale(4.0, 2.0,
+                0.0).translate(10.0, -100.0, 0.0).build();
+        Mat4 expected = new Mat4(new double[][]{{4.0, 0.0, 0.0, 0.0}, {0.0, 0.0, 0.0, 0.0}, {0.0,
+                -2.0, 0.0, 0.0}, {10.0, -100.0, 0.0, 1.0}});
         assertMatricesEqual(expected, transformation, ERROR_MARGIN);
 
         // Reverse operations
-        Mat4 reverse = new Mat4.TransformBuilder().rotateX(Math.PI/4).scale(5.0, 1.0, 1.0).scale(1.0/5.0, 1.0, 1.0).rotateX(-Math.PI/4).build();
+        Mat4 reverse =
+                new Mat4.TransformBuilder().rotateX(Math.PI / 4).scale(5.0, 1.0, 1.0).scale(1.0 / 5.0, 1.0, 1.0).rotateX(-Math.PI / 4).build();
         assertMatricesEqual(Mat4.createIdentityMatrix(), reverse, ERROR_MARGIN);
     }
 

@@ -21,7 +21,8 @@ public class Vec4Test {
 
     @Test
     public void testNormalize() {
-        assertVectorsEqual(new Vec4(0.1825, 0.3651, 0.5477, 0.7302), vecA.normalize(), ERROR_MARGIN);
+        assertVectorsEqual(new Vec4(0.1825, 0.3651, 0.5477, 0.7302), vecA.normalize(),
+                ERROR_MARGIN);
     }
 
     @Test

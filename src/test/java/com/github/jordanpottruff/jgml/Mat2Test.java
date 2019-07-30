@@ -37,7 +37,7 @@ public class Mat2Test {
     public void testScale() {
         assertMatricesEqual(MAT_B, MAT_A.scale(5.0), ERROR_MARGIN);
     }
-    
+
     @Test
     public void testMultiply_mat() {
         Mat2 product = new Mat2(new double[][]{{55.0, 70.0}, {175.0, 230.0}});

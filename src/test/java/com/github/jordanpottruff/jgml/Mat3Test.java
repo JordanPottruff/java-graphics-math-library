@@ -46,7 +46,8 @@ public class Mat3Test {
 
     @Test
     public void testMultiply_mat() {
-        Mat3 product = new Mat3(new double[][]{{190.0, 220.0, 250.0}, {490.0, 580.0, 670.0}, {790.0, 940.0, 1090.0}});
+        Mat3 product = new Mat3(new double[][]{{190.0, 220.0, 250.0}, {490.0, 580.0, 670.0},
+                {790.0, 940.0, 1090.0}});
         assertMatricesEqual(product, MAT_A.multiply(MAT_B), ERROR_MARGIN);
     }
 
