@@ -55,6 +55,7 @@ public class Mat4 extends MatN {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Mat4 invert() {
         return new Mat4(super.invert());
     }
@@ -62,6 +63,7 @@ public class Mat4 extends MatN {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Mat4 add(Mat mat) {
         return new Mat4(super.add(mat));
     }
@@ -69,6 +71,7 @@ public class Mat4 extends MatN {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Mat4 subtract(Mat mat) {
         return new Mat4(super.subtract(mat));
     }
@@ -76,6 +79,7 @@ public class Mat4 extends MatN {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Mat4 scale(double scalar) {
         return new Mat4(super.scale(scalar));
     }
@@ -83,6 +87,7 @@ public class Mat4 extends MatN {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Mat4 multiply(MatN mat) {
         return new Mat4(super.multiply(mat));
     }
@@ -90,6 +95,7 @@ public class Mat4 extends MatN {
     /**
      * {@inheritDoc}
      */
+    @Override
     public Mat4 inverse() {
         return new Mat4(super.inverse());
     }

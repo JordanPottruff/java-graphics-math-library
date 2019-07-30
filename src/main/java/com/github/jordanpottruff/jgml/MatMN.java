@@ -72,6 +72,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int rows() {
         return matrix[0].length;
     }
@@ -79,6 +80,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int cols() {
         return matrix.length;
     }
@@ -86,6 +88,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public VecN getRow(int i) {
         Util.verifyValidRow(matrix, i);
         ArrayList<Double> row = new ArrayList<>();
@@ -98,6 +101,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public VecN getCol(int i) {
         Util.verifyValidColumn(matrix, i);
         return new VecN(matrix[i]);
@@ -106,6 +110,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double get(int row, int col) {
         Util.verifyValidCoord(matrix, row, col);
         return matrix[col][row];
@@ -114,6 +119,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatMN invert() {
         return new MatMN(Util.invert(matrix));
     }
@@ -121,6 +127,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatMN add(Mat mat) {
         return new MatMN(Util.add(matrix, mat.toArray()));
     }
@@ -128,6 +135,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatMN subtract(Mat mat) {
         return new MatMN(Util.subtract(matrix, mat.toArray()));
     }
@@ -135,6 +143,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatMN scale(double scalar) {
         return new MatMN(Util.scale(matrix, scalar));
     }
@@ -142,6 +151,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public VecN multiply(Vec vec) {
         return new VecN(Util.multiply(matrix, vec.toArray()));
     }
@@ -149,6 +159,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatMN multiply(Mat mat) {
         return new MatMN(Util.multiply(matrix, mat.toArray()));
     }
@@ -156,6 +167,7 @@ public class MatMN implements Mat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double[][] toArray() {
         return arrayCopy(matrix);
     }

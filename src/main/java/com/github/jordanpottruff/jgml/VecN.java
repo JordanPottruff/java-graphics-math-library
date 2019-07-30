@@ -57,6 +57,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double get(int i) {
         Util.verifyValidCoord(vector, i);
         return vector[i];
@@ -65,6 +66,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public int size() {
         return vector.length;
     }
@@ -72,6 +74,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double magnitude() {
         return Util.magnitude(vector);
     }
@@ -79,6 +82,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public VecN normalize() {
         return new VecN(Util.normalize(vector));
     }
@@ -86,6 +90,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public VecN invert() {
         return new VecN(Util.invert(vector));
     }
@@ -93,6 +98,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public VecN add(Vec vec) {
         return new VecN(Util.add(vector, vec.toArray()));
     }
@@ -100,6 +106,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public VecN subtract(Vec vec) {
         return new VecN(Util.subtract(vector, vec.toArray()));
     }
@@ -107,6 +114,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double dot(Vec vec) {
         return Util.multiply(vector, vec.toArray());
     }
@@ -114,6 +122,7 @@ public class VecN implements Vec {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double[] toArray() {
         return vector.clone();
     }

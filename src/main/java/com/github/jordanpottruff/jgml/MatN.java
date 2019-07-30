@@ -65,6 +65,7 @@ public class MatN extends MatMN implements SquareMat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatN invert() {
         return new MatN(super.invert());
     }
@@ -72,6 +73,7 @@ public class MatN extends MatMN implements SquareMat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatN add(Mat mat) {
         return new MatN(super.add(mat));
     }
@@ -79,6 +81,7 @@ public class MatN extends MatMN implements SquareMat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatN subtract(Mat mat) {
         return new MatN(super.subtract(mat));
     }
@@ -86,6 +89,7 @@ public class MatN extends MatMN implements SquareMat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatN scale(double scalar) {
         return new MatN(super.scale(scalar));
     }
@@ -104,6 +108,7 @@ public class MatN extends MatMN implements SquareMat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public double determinant() {
         return Util.determinant(matrix);
     }
@@ -111,6 +116,7 @@ public class MatN extends MatMN implements SquareMat {
     /**
      * {@inheritDoc}
      */
+    @Override
     public MatN inverse() {
         return new MatN(Util.inverse(matrix));
     }
