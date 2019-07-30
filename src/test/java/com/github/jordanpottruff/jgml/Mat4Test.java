@@ -3,6 +3,7 @@ package com.github.jordanpottruff.jgml;
 import org.junit.Test;
 
 import static com.github.jordanpottruff.jgml.MatMNTest.assertMatricesEqual;
+import static com.github.jordanpottruff.jgml.VecNTest.assertVectorsEqual;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Mat4Test {
@@ -14,6 +15,8 @@ public class Mat4Test {
             30.0, 35.0, 40.0}, {45.0, 50.0, 55.0, 60.0}, {65.0, 70.0, 75.0, 80.0}});
     private static final Mat4 MAT_C = new Mat4(new double[][]{{5.0, 1.0, 1.0, 1.0}, {1.0, 5.0,
             1.0, 1.0}, {1.0, 1.0, 5.0, 1.0}, {1.0, 1.0, 1.0, 5.0}});
+
+    private static final Vec4 VEC_A = new Vec4(new double[]{1.0, 2.0, 3.0, 4.0});
 
     @Test
     public void testInvert() {
@@ -39,6 +42,18 @@ public class Mat4Test {
     @Test
     public void testScale() {
         assertMatricesEqual(MAT_B, MAT_A.scale(5.0), ERROR_MARGIN);
+    }
+
+    @Test
+    public void testMultiply_mat() {
+        Mat4 product = new Mat4(new double[][]{{450.0, 500.0, 550.0, 600.0}, {1010.0, 1140.0, 1270.0, 1400.0}, {1570.0, 1780.0, 1990.0, 2200.0}, {2130.0, 2420.0, 2710.0, 3000.0}});
+        assertMatricesEqual(product, MAT_A.multiply(MAT_B), ERROR_MARGIN);
+    }
+
+    @Test
+    public void testMultiply_vec() {
+        Vec4 product = new Vec4(new double[]{90.0, 100.0, 110.0, 120.0});
+        assertVectorsEqual(product, MAT_A.multiply(VEC_A), ERROR_MARGIN);
     }
 
     @Test

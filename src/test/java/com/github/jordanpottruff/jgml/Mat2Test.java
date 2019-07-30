@@ -3,6 +3,7 @@ package com.github.jordanpottruff.jgml;
 import org.junit.Test;
 
 import static com.github.jordanpottruff.jgml.MatMNTest.assertMatricesEqual;
+import static com.github.jordanpottruff.jgml.VecNTest.assertVectorsEqual;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Mat2Test {
@@ -11,6 +12,8 @@ public class Mat2Test {
     private static final Mat2 MAT_A = new Mat2(new double[][]{{1.0, 2.0}, {5.0, 6.0}});
     private static final Mat2 MAT_B = new Mat2(new double[][]{{5.0, 10.0}, {25.0, 30.0}});
     private static final Mat2 MAT_C = new Mat2(new double[][]{{5.0, 1.0}, {1.0, 5.0}});
+
+    private static final Vec2 VEC_A = new Vec2(new double[]{1.0, 2.0});
 
     @Test
     public void testInvert() {
@@ -33,6 +36,19 @@ public class Mat2Test {
     @Test
     public void testScale() {
         assertMatricesEqual(MAT_B, MAT_A.scale(5.0), ERROR_MARGIN);
+    }
+    
+    @Test
+    public void testMultiply_mat() {
+        Mat2 product = new Mat2(new double[][]{{55.0, 70.0}, {175.0, 230.0}});
+        assertMatricesEqual(product, MAT_A.multiply(MAT_B), ERROR_MARGIN);
+    }
+
+    @Test
+    public void testMultiply_vec() {
+        Vec2 product = new Vec2(new double[]{11.0, 14.0});
+        System.out.println(MAT_A.multiply(VEC_A));
+        assertVectorsEqual(product, MAT_A.multiply(VEC_A), ERROR_MARGIN);
     }
 
     @Test

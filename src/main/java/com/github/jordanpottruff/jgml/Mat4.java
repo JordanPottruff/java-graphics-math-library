@@ -93,6 +93,16 @@ public class Mat4 extends MatN {
     }
 
     /**
+     * Calculates the multiplication of this 4x4 matrix with the passed 4-dimensional vector.
+     *
+     * @param vec the 4-dimensional vector to multiply by.
+     * @return the product, always a 4-dimensional vector.
+     */
+    public Vec4 multiply(Vec4 vec) {
+        return new Vec4(super.multiply(vec));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

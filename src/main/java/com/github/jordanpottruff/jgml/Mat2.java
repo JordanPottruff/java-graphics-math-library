@@ -91,6 +91,16 @@ public class Mat2 extends MatN {
     }
 
     /**
+     * Calculates the multiplication of this 2x2 matrix with the passed 2-dimensional vector.
+     *
+     * @param vec the 2-dimensional vector to multiply by.
+     * @return the product, always a 2-dimensional vector.
+     */
+    public Vec2 multiply(Vec2 vec) {
+        return new Vec2(super.multiply(vec));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

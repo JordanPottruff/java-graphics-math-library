@@ -92,6 +92,16 @@ public class Mat3 extends MatN {
     }
 
     /**
+     * Calculates the multiplication of this 3x3 matrix with the passed 3-dimensional vector.
+     *
+     * @param vec the 3-dimensional vector to multiply by.
+     * @return the product, always a 3-dimensional vector.
+     */
+    public Vec3 multiply(Vec3 vec) {
+        return new Vec3(super.multiply(vec));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
