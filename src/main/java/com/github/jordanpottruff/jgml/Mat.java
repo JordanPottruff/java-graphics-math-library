@@ -3,7 +3,7 @@ package com.github.jordanpottruff.jgml;
 /**
  * The definition of the core functionality for a generalized matrix.
  */
-public interface Mat {
+public interface Mat extends Iterable<Double> {
 
     /**
      * Returns the number of rows in the matrix.

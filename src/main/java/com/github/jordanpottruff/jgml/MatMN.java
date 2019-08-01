@@ -2,6 +2,7 @@ package com.github.jordanpottruff.jgml;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * The root of the hierarchy of concrete matrix implementations. A MatMN is a generalized matrix of
@@ -67,6 +68,16 @@ public class MatMN implements Mat {
             matrix[c++] = vec.toArray();
         }
         return new MatMN(matrix);
+    }
+
+    /**
+     * Returns an iterator over the elements in this matrix. Columns are traversed first, then each
+     * row within a column.
+     *
+     * @return an iterator over the elements in this matrix.
+     */
+    public Iterator<Double> iterator() {
+        return Arrays.stream(matrix).flatMapToDouble(Arrays::stream).iterator();
     }
 
     /**

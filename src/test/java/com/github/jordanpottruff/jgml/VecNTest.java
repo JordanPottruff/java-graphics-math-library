@@ -3,6 +3,7 @@ package com.github.jordanpottruff.jgml;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,6 +33,21 @@ public class VecNTest {
         VecN fromIterable = VecN.createFrom(arrayList);
 
         assertEquals(fromArray, fromIterable);
+    }
+
+    @Test
+    public void testIterator() {
+        List<Double> expected = new ArrayList<>();
+        expected.add(1.0);
+        expected.add(2.0);
+        expected.add(3.0);
+
+        List<Double> actual = new ArrayList<>();
+        for(double elem: vec3A) {
+            actual.add(elem);
+        }
+
+        assertEquals(expected, actual);
     }
 
     @Test

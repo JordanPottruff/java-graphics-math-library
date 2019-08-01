@@ -3,7 +3,7 @@ package com.github.jordanpottruff.jgml;
 /**
  * The definition of the core functionality for a generalized vector.
  */
-public interface Vec {
+public interface Vec extends Iterable<Double> {
 
     /**
      * Returns the element at the specified 0-based index.

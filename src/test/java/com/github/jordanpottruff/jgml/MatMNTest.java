@@ -3,6 +3,7 @@ package com.github.jordanpottruff.jgml;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.github.jordanpottruff.jgml.VecNTest.assertVectorsEqual;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -39,6 +40,24 @@ public class MatMNTest {
         MatMN fromIterable = MatMN.createFrom(arrayList);
 
         assertEquals(fromArray, fromIterable);
+    }
+
+    @Test
+    public void testIterator() {
+        double[][] components = {{1.0, 2.0}, {3.0, 4.0}};
+
+        List<Double> expected = new ArrayList<>();
+        expected.add(1.0);
+        expected.add(2.0);
+        expected.add(3.0);
+        expected.add(4.0);
+
+        List<Double> actual = new ArrayList<>();
+        for(double elem: new MatMN(components)) {
+            actual.add(elem);
+        }
+
+        assertEquals(expected, actual);
     }
 
     @Test

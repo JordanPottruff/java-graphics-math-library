@@ -2,6 +2,7 @@ package com.github.jordanpottruff.jgml;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * The root of the hierarchy of concrete vector implementations. A VecN is a generalized vector of
@@ -52,6 +53,15 @@ public class VecN implements Vec {
             vector[i] = items.get(i);
         }
         return new VecN(vector);
+    }
+
+    /**
+     * Returns an iterator over the elements in this vector in proper sequence.
+     *
+     * @return an iterator over the elements in this vector.
+     */
+    public Iterator<Double> iterator() {
+        return Arrays.stream(vector).iterator();
     }
 
     /**
