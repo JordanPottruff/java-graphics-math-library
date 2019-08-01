@@ -155,6 +155,16 @@ public class Mat3 extends MatN {
         }
 
         /**
+         * Translates in both axes.
+         *
+         * @param amounts how much to translate along each axis, represented as a Vec2.
+         * @return the transformed builder.
+         */
+        public TransformBuilder translate(Vec2 amounts) {
+            return translate(amounts.x(), amounts.y());
+        }
+
+        /**
          * Rotates (along the invisible third axis perpendicular to the view plane).
          *
          * @param radians the amount to rotate by, in radians.

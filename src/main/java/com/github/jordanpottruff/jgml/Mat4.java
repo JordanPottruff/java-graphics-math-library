@@ -160,6 +160,16 @@ public class Mat4 extends MatN {
         }
 
         /**
+         * Translates in all three axes.
+         *
+         * @param amounts how much to translate along each axis, represented as a Vec3.
+         * @return the transformed builder.
+         */
+        public TransformBuilder translate(Vec3 amounts) {
+            return translate(amounts.x(), amounts.y(), amounts.z());
+        }
+
+        /**
          * Rotates along the x-axis.
          *
          * @param radians the amount to rotate by, in radians.
