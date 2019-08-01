@@ -88,6 +88,15 @@ public class Vec4 extends VecN implements CrossProductVec {
     }
 
     /**
+     * Returns the x, y, and z elements as a new Vec3 object.
+     *
+     * @return the xyz 3-dimensional vector.
+     */
+    public Vec3 xyz() {
+        return new Vec3(x(), y(), z());
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

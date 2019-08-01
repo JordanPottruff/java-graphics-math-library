@@ -78,6 +78,15 @@ public class Vec3 extends VecN implements CrossProductVec {
     }
 
     /**
+     * Returns the x and y elements as a new Vec2 object.
+     *
+     * @return the xy 2-dimensional vector.
+     */
+    public Vec2 xy() {
+        return new Vec2(x(), y());
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
