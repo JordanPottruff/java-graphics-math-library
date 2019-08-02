@@ -22,4 +22,30 @@ public class IntegrationTest {
         assertVectorsEqual(new Vec4(0.0, -1.0, 0.0, 0.0), rotateThrice, ERROR_MARGIN);
         assertVectorsEqual(new Vec4(1.0, 0.0, 0.0, 0.0), rotateFrice, ERROR_MARGIN);
     }
+
+    @Test
+    public void testPointAsVec() {
+        // Points (vertices) will set the homogeneous coordinate w=1.
+        Vec4 point = new Vec4(5.0, 0.0, 0.0, 1.0);
+        Mat4 translate = new Mat4.TransformBuilder().translate(10.0, -5.0, 50.0).build();
+        Mat4 scale = new Mat4.TransformBuilder().scale(10.0, 1.0, 1.0).build();
+
+        Vec3 actual = scale.multiply(translate.multiply(point)).xyz();
+        assertVectorsEqual(new Vec3(150.0, -5.0, 50.0), actual, ERROR_MARGIN);
+    }
+
+    @Test
+    public void testRotateAroundPoint() {
+        // To rotate one point around another point:
+        //  - translate by the negation of the components of that point.
+        //  - rotate.
+        //  - translate back.
+        Vec4 pointToRotate = new Vec4(100.0, -50.0, 0.0, 1.0);
+        Vec3 pointToRotateAround = new Vec3(10.0, -10.0 , 0.0);
+        Mat4 translate = new Mat4.TransformBuilder().translate(pointToRotateAround).build();
+        Mat4 rotateHalf = new Mat4.TransformBuilder().rotateZ(Math.PI).build();
+
+        Vec4 actual = translate.multiply(rotateHalf.multiply(translate.inverse().multiply(pointToRotate)));
+        assertVectorsEqual(new Vec4(-80.0, 30.0, 0.0, 1.0), actual, ERROR_MARGIN);
+    }
 }
