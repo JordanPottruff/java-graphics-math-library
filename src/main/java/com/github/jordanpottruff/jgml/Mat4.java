@@ -143,6 +143,36 @@ public class Mat4 extends MatN {
         }
 
         /**
+         * Scales along the x-axis.
+         *
+         * @param factor how much to scale in the x-axis.
+         * @return the transformed builder.
+         */
+        public TransformBuilder scaleX(double factor) {
+            return scale(factor, 1.0, 1.0);
+        }
+
+        /**
+         * Scales along the y-axis.
+         *
+         * @param factor how much to scale in the y-axis.
+         * @return the transformed builder.
+         */
+        public TransformBuilder scaleY(double factor) {
+            return scale(1.0, factor, 1.0);
+        }
+
+        /**
+         * Scales along the z-axis.
+         *
+         * @param factor how much to scale in the z-axis.
+         * @return the transformed builder.
+         */
+        public TransformBuilder scaleZ(double factor) {
+            return scale(1.0, 1.0, factor);
+        }
+
+        /**
          * Translates in all three axes.
          *
          * @param x how much to translate along the x-axis.
@@ -167,6 +197,36 @@ public class Mat4 extends MatN {
          */
         public TransformBuilder translate(Vec3 amounts) {
             return translate(amounts.x(), amounts.y(), amounts.z());
+        }
+
+        /**
+         * Translates along the x-axis.
+         *
+         * @param factor how much to translate along the x-axis.
+         * @return the transformed builder.
+         */
+        public TransformBuilder translateX(double factor) {
+            return translate(factor, 0.0, 0.0);
+        }
+
+        /**
+         * Translates along the y-axis.
+         *
+         * @param factor how much to translate along the y-axis.
+         * @return the transformed builder.
+         */
+        public TransformBuilder translateY(double factor) {
+            return translate(0.0, factor, 0.0);
+        }
+
+        /**
+         * Translates along the z-axis.
+         *
+         * @param factor how much to translate along the z-axis.
+         * @return the transformed builder.
+         */
+        public TransformBuilder translateZ(double factor) {
+            return translate(0.0, 0.0, factor);
         }
 
         /**
