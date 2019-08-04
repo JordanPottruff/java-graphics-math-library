@@ -6,7 +6,6 @@ various matrix and vector implementations. This makes it easier to program graph
 in the Java language.
 
 ## Overview
-### Design
 ![UML Diagram](img/uml-diagram.png)
 
 JGML provides multiple implementations of both vectors and matrices. These implementations primarily
