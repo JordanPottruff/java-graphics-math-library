@@ -66,3 +66,26 @@ out of a sequence of rotation, scaling, translation, and shearing transformation
 
 ## Examples
 
+### Vectors
+````java
+// Some ways to create objects:
+Vec3 vecA = new Vec3(1.0, 2.0, 3.0); // <1.0, 2.0, 3.0>
+
+Vec4 vecB = new Vec4(vecA, 4.0);     // <1.0, 2.0, 3.0, 4.0>
+Vec4 vecBCopy = new Vec4(vecB);      // <1.0, 2.0, 3.0, 4.0> (new object)
+
+List<Double> list = new ArrayList<>();
+list.add(10.0);
+list.add(9.0);
+list.add(8.0);
+Vec3 vecC = new Vec3(list);          // <10.0, 9.0, 8.0> 
+
+// Some operations:
+Vec3 sum = vecA.add(vecC);           // <11.0, 11.0, 11.0>
+double dot = VecA.multiply(vecC);    // 52
+Vec3 cross = vecA.cross(vecC);       // <-11.0, 22.0, -11.0>   
+````
+
+### Matrices
+
+### Transformations
