@@ -71,6 +71,23 @@ public class MatMN implements Mat {
     }
 
     /**
+     * Returns the product of multiplying a series of matrices together. The order of the arguments
+     * represents the order of multiplications such that A*B*C is equivalent to {@code
+     * chain(A, B, C)}.
+     *
+     * @param mat the first matrix of the product chain.
+     * @param matrices the rest of the matrices of the product chain.
+     * @return the product of the series of matrices.
+     */
+    public static MatMN chain(MatMN mat, MatMN... matrices) {
+        MatMN product = new MatMN(mat);
+        for(int i=0; i<matrices.length; i++) {
+            product = product.multiply(matrices[i]);
+        }
+        return product;
+    }
+
+    /**
      * Returns an iterator over the elements in this matrix. Columns are traversed first, then each
      * row within a column.
      *

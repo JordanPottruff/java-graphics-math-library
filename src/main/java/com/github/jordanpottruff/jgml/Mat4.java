@@ -53,6 +53,19 @@ public class Mat4 extends MatN {
     }
 
     /**
+     * Returns the product of multiplying a series of 4x4 matrices together. The order of the
+     * arguments represents the order of multiplications such that A*B*C is equivalent to {@code
+     * chain(A, B, C)}.
+     *
+     * @param mat the first matrix of the product chain.
+     * @param matrices the rest of the matrices of the product chain.
+     * @return the product of the series of matrices.
+     */
+    public static Mat4 chain(Mat4 mat, Mat4... matrices) {
+        return new Mat4(MatMN.chain(mat, matrices));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override

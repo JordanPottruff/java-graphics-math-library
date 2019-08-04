@@ -45,7 +45,11 @@ public class IntegrationTest {
         Mat4 translate = new Mat4.TransformBuilder().translate(pointToRotateAround).build();
         Mat4 rotateHalf = new Mat4.TransformBuilder().rotateZ(Math.PI).build();
 
-        Vec4 actual = translate.multiply(rotateHalf.multiply(translate.inverse().multiply(pointToRotate)));
-        assertVectorsEqual(new Vec4(-80.0, 30.0, 0.0, 1.0), actual, ERROR_MARGIN);
+        // Easier to read, less verbose with parentheses.
+        Vec4 actual1 = Mat4.chain(translate, rotateHalf, translate.inverse()).multiply(pointToRotate);
+        // Harder to read, more verbose.
+        Vec4 actual2 = translate.multiply(rotateHalf.multiply(translate.inverse().multiply(pointToRotate)));
+        assertVectorsEqual(new Vec4(-80.0, 30.0, 0.0, 1.0), actual1, ERROR_MARGIN);
+        assertVectorsEqual(actual1, actual2, ERROR_MARGIN);
     }
 }

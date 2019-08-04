@@ -51,6 +51,19 @@ public class Mat2 extends MatN {
     }
 
     /**
+     * Returns the product of multiplying a series of 2x2 matrices together. The order of the
+     * arguments represents the order of multiplications such that A*B*C is equivalent to {@code
+     * chain(A, B, C)}.
+     *
+     * @param mat the first matrix of the product chain.
+     * @param matrices the rest of the matrices of the product chain.
+     * @return the product of the series of matrices.
+     */
+    public static Mat2 chain(Mat2 mat, Mat2... matrices) {
+        return new Mat2(MatMN.chain(mat, matrices));
+    }
+
+    /**
      * {@inheritDoc}
      */
     @Override
