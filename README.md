@@ -70,7 +70,7 @@ out of a sequence of rotation, scaling, translation, and shearing transformation
 ````java
 double[] array = new double[]{10.0, 9.0, 8.0};
 
-// Some ways to create objects:
+// Some ways to create vector objects:
 Vec3 vec3A = new Vec3(1.0, 2.0, 3.0);  // <1.0, 2.0, 3.0>
 Vec3 vec3B = new Vec3(array);          // <10.0, 9.0, 8.0> 
 Vec4 vec4A = new Vec4(vecA, 4.0);      // <1.0, 2.0, 3.0, 4.0>
@@ -89,5 +89,42 @@ double xVec3A = vec3A.x();             // 1.0
 ````
 
 ### Matrices
+`````java
+double[][] array2D = new double[]{{1.0, 2.0}, {3.0, 4.0}};
+
+// Some ways to create matrix objects:
+Mat2 mat2A = new Mat2(array2D);
+// [1.0][3.0]
+// [2.0][4.0]
+Mat2 mat2B = new Mat2(new Vec2(10.0, 5.0), new Vec2(3.0, 12.0));
+// [10.0][ 3.0]
+// [ 5.0][12.0] 
+Mat2 mat2C = new Mat2(mat2B);
+// [10.0][ 3.0]
+// [ 5.0][12.0] 
+// (new object)
+
+// Some operations:
+double det = mat2A.determinant();      // -2.0
+Mat2 inverse = mat2A.inverse();
+// [-2.0][ 1.5]
+// [ 1.0][-0.5]
+Mat2 sum = mat2A.add(mat2B);
+// [11.0][ 6.0]
+// [ 7.0][16.0]
+Mat2 product = mat2A.multiply(mat2B);
+// [25.0][39.0]
+// [40.0][54.0]
+Vec2 aVec = new vec2(1.0, 3.0);
+Vec2 vecMult = mat2A.multiply(aVec);   // <10.0, 14.0>
+
+// Other functionality:
+double elem = mat2A.get(0, 1);         // 3.0
+Vec2 col = mat2A.getCol(0);            // <1.0, 2.0>
+Vec2 row = mat2A.getRow(1);            // <5.0, 12.0>
+double[][] arrayMat2A = mat2A.toArray();
+// {{1.0, 2.0}, {3.0, 4.0}}
+
+`````
 
 ### Transformations
