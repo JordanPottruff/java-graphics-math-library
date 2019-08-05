@@ -127,3 +127,21 @@ double[][] arrayMat2A = mat2A.toArray();
 ````
 
 ### Transformations
+````java
+Mat4 rotate = new Mat4.TransformBuilder().rotateX(Math.PI).build();
+Mat4 translate = new Mat4.TransformBuilder().translateX(10.0).build();
+Mat4 scale = new Mat4.TransformBuilder().scaleX(100.0).build();
+Mat4 shear = new Mat4.shearX(10.0, 12.0).build();
+
+// Operations can be chained too. Here is an example of rotating a point around another:
+Vec4 pointToRotate = new Vec3(1.0, 2.0, 3.0, 1.0);
+Vec4 pointToRotateAround = new Vec3(10.0, 2.0, 0.0, 1.0);
+
+Mat4 chain = new Mat4.TransformBuilder()
+                .translate(pointToRotateAround.invert())
+                .rotateX(Math.PI/2.0)
+                .translate(pointToRotateAround)
+                .build();
+
+Vec4 rotatedPoint = chain.multiply(pointToRotate);
+````
