@@ -89,8 +89,8 @@ double xVec3A = vec3A.x();             // 1.0
 ````
 
 ### Matrices
-`````java
-double[][] array2D = new double[]{{1.0, 2.0}, {3.0, 4.0}};
+````java
+double[][] array2D = new double[][]{{1.0, 2.0}, {3.0, 4.0}};
 
 // Some ways to create matrix objects:
 Mat2 mat2A = new Mat2(array2D);
@@ -124,7 +124,6 @@ Vec2 col = mat2A.getCol(0);            // <1.0, 2.0>
 Vec2 row = mat2A.getRow(1);            // <5.0, 12.0>
 double[][] arrayMat2A = mat2A.toArray();
 // {{1.0, 2.0}, {3.0, 4.0}}
-
-`````
+````
 
 ### Transformations
