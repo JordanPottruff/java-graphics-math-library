@@ -68,22 +68,24 @@ out of a sequence of rotation, scaling, translation, and shearing transformation
 
 ### Vectors
 ````java
+double[] array = new double[]{10.0, 9.0, 8.0};
+
 // Some ways to create objects:
-Vec3 vecA = new Vec3(1.0, 2.0, 3.0); // <1.0, 2.0, 3.0>
-
-Vec4 vecB = new Vec4(vecA, 4.0);     // <1.0, 2.0, 3.0, 4.0>
-Vec4 vecBCopy = new Vec4(vecB);      // <1.0, 2.0, 3.0, 4.0> (new object)
-
-List<Double> list = new ArrayList<>();
-list.add(10.0);
-list.add(9.0);
-list.add(8.0);
-Vec3 vecC = new Vec3(list);          // <10.0, 9.0, 8.0> 
+Vec3 vec3A = new Vec3(1.0, 2.0, 3.0);  // <1.0, 2.0, 3.0>
+Vec3 vec3B = new Vec3(array);          // <10.0, 9.0, 8.0> 
+Vec4 vec4A = new Vec4(vecA, 4.0);      // <1.0, 2.0, 3.0, 4.0>
+Vec4 vec4B = new Vec4(vecB);           // <1.0, 2.0, 3.0, 4.0> (new object)
 
 // Some operations:
-Vec3 sum = vecA.add(vecC);           // <11.0, 11.0, 11.0>
-double dot = VecA.multiply(vecC);    // 52
-Vec3 cross = vecA.cross(vecC);       // <-11.0, 22.0, -11.0>   
+double mag = vec3A.magnitude();        // 3.74...
+Vec3 norm = vec3A.normalize();         // <0.27..., 0.53...., 8.80...>
+Vec3 sum = vec3A.add(vec3B);           // <11.0, 11.0, 11.0>
+double dot = Vec3A.multiply(vec3B);    // 52.0
+Vec3 cross = vec3A.cross(vec3B);       // <-11.0, 22.0, -11.0>
+
+// Other functionality:
+double[] arrayVec3A = vec3A.toArray(); // {1.0, 2.0, 3.0}
+double xVec3A = vec3A.x();             // 1.0
 ````
 
 ### Matrices
