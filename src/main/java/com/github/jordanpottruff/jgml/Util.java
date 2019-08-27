@@ -29,6 +29,16 @@ class Util {
         return newVec;
     }
 
+    static double[] scale(double[] vec, double scalar) {
+        double[] result = new double[vec.length];
+
+        for(int i=0; i<vec.length; i++) {
+            result[i] = vec[i] * scalar;
+        }
+
+        return result;
+    }
+
     /**
      * Returns a new matrix that is the input matrix scaled by the input scalar.
      */

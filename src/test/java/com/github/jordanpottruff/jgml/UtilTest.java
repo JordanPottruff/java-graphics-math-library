@@ -77,7 +77,12 @@ public class UtilTest {
     }
 
     @Test
-    public void testScale() {
+    public void testScale_vec() {
+        assertTrue(vecsEqual(scale(VEC2_A, 2.0), new double[]{-4.6f, 6.4f}));
+    }
+
+    @Test
+    public void testScale_mat() {
         assertTrue(matsEqual(scale(MAT2X2_A, 3.0f), new double[][]{{3.0f, 6.9f}, {-4.5f, 1.5f}}));
     }
 

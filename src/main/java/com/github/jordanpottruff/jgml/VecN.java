@@ -109,6 +109,14 @@ public class VecN implements Vec {
      * {@inheritDoc}
      */
     @Override
+    public VecN scale(double scalar) {
+        return new VecN(Util.scale(vector, scalar));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public VecN add(Vec vec) {
         return new VecN(Util.add(vector, vec.toArray()));
     }

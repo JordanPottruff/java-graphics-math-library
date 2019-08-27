@@ -90,6 +90,15 @@ public class VecNTest {
     }
 
     @Test
+    public void testScale() {
+        VecN vec3AScaleByTwo = new VecN(new double[]{2.0, 4.0, 6.0});
+        VecN vec4AScaleByTen = new VecN(new double[]{100.0, 1000.0, 10000.0, 100000.0});
+
+        assertVectorsEqual(vec3AScaleByTwo, VEC3_A.scale(2.0), ERROR_MARGIN);
+        assertVectorsEqual(vec4AScaleByTen, VEC4_A.scale(10.0), ERROR_MARGIN);
+    }
+
+    @Test
     public void testAdd() {
         VecN vec3Sum = new VecN(new double[]{-4.5, 12.0, -20.494});
         VecN vec4Sum = new VecN(new double[]{-9990.0, -900.0, 900.0, 9990.0});

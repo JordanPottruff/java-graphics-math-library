@@ -43,6 +43,14 @@ public interface Vec extends Iterable<Double> {
     Vec invert();
 
     /**
+     * Calculates the vector formed by scaling each element by the specified amount.
+     *
+     * @param scalar the amount to scale by.
+     * @return the scaled vector.
+     */
+    Vec scale(double scalar);
+
+    /**
      * Calculates the sum of this vector with the passed vector.
      *
      * @param vec the vector being added.
