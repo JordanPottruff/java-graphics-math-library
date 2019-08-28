@@ -116,6 +116,14 @@ public class Vec4 extends VecN implements CrossProductVec {
      * {@inheritDoc}
      */
     @Override
+    public Vec4 scale(double scalar) {
+        return new Vec4(super.scale(scalar).vector);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Vec4 add(Vec vec) {
         return new Vec4(super.add(vec).vector);
     }

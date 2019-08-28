@@ -98,6 +98,14 @@ public class Vec3 extends VecN implements CrossProductVec {
      * {@inheritDoc}
      */
     @Override
+    public Vec3 scale(double scalar) {
+        return new Vec3(super.scale(scalar).vector);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Vec3 invert() {
         return new Vec3(super.invert().vector);
     }

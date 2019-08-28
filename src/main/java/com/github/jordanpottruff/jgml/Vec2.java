@@ -76,6 +76,14 @@ public class Vec2 extends VecN {
      * {@inheritDoc}
      */
     @Override
+    public Vec2 scale(double scalar) {
+        return new Vec2(super.scale(scalar).vector);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Vec2 add(Vec vec) {
         return new Vec2(super.add(vec).vector);
     }
