@@ -134,8 +134,8 @@ Mat4 scale = new Mat4.TransformBuilder().scaleX(100.0).build();
 Mat4 shear = new Mat4.shearX(10.0, 12.0).build();
 
 // Operations can be chained too. Here is an example of rotating a point around another:
-Vec4 pointToRotate = new Vec3(1.0, 2.0, 3.0, 1.0);
-Vec4 pointToRotateAround = new Vec3(10.0, 2.0, 0.0, 1.0);
+Vec4 pointToRotate = new Vec4(1.0, 2.0, 3.0, 1.0);
+Vec4 pointToRotateAround = new Vec4(10.0, 2.0, 0.0, 1.0);
 
 Mat4 chain = new Mat4.TransformBuilder()
                 .translate(pointToRotateAround.invert())
