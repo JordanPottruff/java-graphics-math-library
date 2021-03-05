@@ -25,7 +25,7 @@ public class Vec2 extends VecN {
      * @throws IllegalArgumentException if the vector does not contain at least two elements.
      */
     public Vec2(Vec vec) {
-        super(vec.toArray());
+        super(vec, 2);
     }
 
     /**

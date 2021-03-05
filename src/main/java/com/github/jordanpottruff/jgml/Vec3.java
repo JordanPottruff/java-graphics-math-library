@@ -25,7 +25,7 @@ public class Vec3 extends VecN implements CrossProductVec {
      * @throws IllegalArgumentException if the vector does not contain at least three elements.
      */
     public Vec3(Vec vec) {
-        super(vec.toArray());
+        super(vec, 3);
     }
 
     /**

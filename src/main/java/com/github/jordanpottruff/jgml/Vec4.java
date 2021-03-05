@@ -25,7 +25,7 @@ public class Vec4 extends VecN implements CrossProductVec {
      * @throws IllegalArgumentException if the vector does not contain at least four elements.
      */
     public Vec4(Vec vec) {
-        super(vec.toArray());
+        super(vec, 4);
     }
 
     /**

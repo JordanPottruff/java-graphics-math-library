@@ -36,6 +36,18 @@ public class VecN implements Vec {
     }
 
     /**
+     * Constructs a VecN from the first n-elements of a vector object. The order of the elements is
+     * preserved.
+     *
+     * @param vec a vector object.
+     * @param n the number of elements to take.
+     * @throws IllegalArgumentException if the vector does not contain at least two elements.
+     */
+    public VecN(Vec vec, int n) {
+        this(Arrays.copyOfRange(vec.toArray(), 0, n));
+    }
+
+    /**
      * Creates a VecN from an iterable of elements. The iterable must contain two or more elements.
      * The order of the elements will be based on the order provided by the iterable.
      *
